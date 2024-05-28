@@ -23,7 +23,7 @@ function App() {
                 EDIFICIO RESIDENCIAL EN VILLA ASIA
               </h5>
               <p className="font-normal text-gray-700 dark:text-gray-400">
-                Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.
+                si
               </p>
             </Card>
           )
