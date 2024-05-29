@@ -1,8 +1,14 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import { Card, Badge, Label, TextInput, Select, Button } from 'flowbite-react'
+import { Card, Badge, Label, TextInput, Select, Button, Flowbite } from 'flowbite-react'
 import { Link } from 'react-router-dom'
+
+const customButtonTheme = {
+  button: {
+    "pink": "border border-pink-300 text-pink-900 focus:ring-4 focus:ring-pink-300 enabled:hover:bg-[#EA168E] dark:border-pink-600 dark:bg-pink-[#EA168E] dark:text-white dark:focus:ring-pink-700 dark:enabled:hover:border-pink-700 dark:enabled:hover:bg-pink-700",
+  }
+}
 
 const example = [{
   title: 'EDIFICIO RESIDENCIAL EN VILLA ASIA',
@@ -31,8 +37,8 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <div className='w-full min-h-screen bg-gray-300 flex'>
-      <aside className='w-full max-w-xs bg-gray-100 h-auto min-h-screen lg:block hidden py-8 px-5'>
+    <div className='w-full min-h-screen bg-[#002060] flex' >
+      <aside className='w-full max-w-xs bg-gray-100 h-auto min-h-screen lg:block hidden bg-[#EEF2F5] py-8 px-5'>
         <div className='w-full p-3'>
           <div className='mb-3'>
             <div className="mb-2 block">
@@ -93,7 +99,9 @@ function App() {
             <TextInput type="number" placeholder="100$" />
           </div>
 
-          <Button className='w-full' size='lg'>Filtrar</Button>
+          <Flowbite theme={customButtonTheme}>
+            <Button color='pink' className='w-full bg-[#EA168E] text-white hover:bg-[#EA168E] active:bg-[#EA168E] focus:bg-[#EA168E]' size='lg'>Filtrar</Button>
+          </Flowbite>
         </div>
       </aside>
       <div className='grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 justify-items-center py-10 px-3 w-full'>
@@ -101,7 +109,7 @@ function App() {
           return (
             <Link className='h-min' to='/login' key={el.title}>
               <Card
-                className="max-w-[21rem]"
+                className="max-w-[21rem] bg-[#EEF2F5]"
                 imgAlt="Placeholder image"
                 imgSrc="https://placehold.co/600x400"
               >
