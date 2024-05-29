@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import { Card, Badge, Label, TextInput, Select, Button, Flowbite } from 'flowbite-react'
 import { Link } from 'react-router-dom'
+import Nav from './Nav.jsx'
 
 const customButtonTheme = {
   button: {
@@ -37,101 +38,104 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <div className='w-full min-h-screen bg-[#002060] flex' >
-      <aside className='w-full max-w-xs bg-gray-100 h-auto min-h-screen lg:block hidden bg-[#EEF2F5] py-8 px-5'>
-        <div className='w-full p-3'>
-          <div className='mb-3'>
-            <div className="mb-2 block">
-              <Label value="Metros Cuadrados:" className='text-lg font-semibold' />
-            </div>
-            <div className='flex gap-5'>
-              <TextInput type="number" placeholder="34 m2" />
-              <TextInput type="number" placeholder="134 m2" />
-            </div>
-          </div>
-
-          <div className='mb-3'>
-            <div className="mb-2">
-              <Label value='Tipo:' className='text-lg font-semibold'></Label>
-            </div>
-            <Select>
-              <option value='casa'>Casa</option>
-              <option value='apartamento'>Apartamento</option>
-              <option value='condominio'>Condominio</option>
-            </Select>
-          </div>
-
-          <div className='mb-3'>
-            <div className="mb-2">
-              <Label value='Comercialización:' className='text-lg font-semibold'></Label>
-            </div>
-            <Select>
-              <option value='casa'>Venta</option>
-              <option value='apartamento'>Traspaso</option>
-              <option value='condominio'>Alquiler</option>
-            </Select>
-          </div>
-
-          <div className='grid grid-cols-2 gap-2'>
+    <>
+      <Nav />
+      <div className='w-full min-h-screen bg-[#002060] flex' >
+        <aside className='w-full max-w-xs bg-gray-100 h-auto min-h-screen lg:block hidden bg-[#EEF2F5] py-8 px-5'>
+          <div className='w-full p-3'>
             <div className='mb-3'>
-              <div className="mb-2">
-                <Label value='Baños:' className='text-lg font-semibold'></Label>
+              <div className="mb-2 block">
+                <Label value="Metros Cuadrados:" className='text-lg font-semibold' />
               </div>
-
-              <TextInput type="number" placeholder="2" />
+              <div className='flex gap-5'>
+                <TextInput type="number" placeholder="34 m2" />
+                <TextInput type="number" placeholder="134 m2" />
+              </div>
             </div>
 
             <div className='mb-3'>
               <div className="mb-2">
-                <Label value='Habitaciones:' className='text-lg font-semibold'></Label>
+                <Label value='Tipo:' className='text-lg font-semibold'></Label>
               </div>
-
-              <TextInput type="number" placeholder="4" />
+              <Select>
+                <option value='casa'>Casa</option>
+                <option value='apartamento'>Apartamento</option>
+                <option value='condominio'>Condominio</option>
+              </Select>
             </div>
 
-          </div>
-
-          <div className='mb-3'>
-            <div className="mb-2">
-              <Label value='Precio Maximo:' className='text-lg font-semibold'></Label>
+            <div className='mb-3'>
+              <div className="mb-2">
+                <Label value='Comercialización:' className='text-lg font-semibold'></Label>
+              </div>
+              <Select>
+                <option value='casa'>Venta</option>
+                <option value='apartamento'>Traspaso</option>
+                <option value='condominio'>Alquiler</option>
+              </Select>
             </div>
 
-            <TextInput type="number" placeholder="100$" />
-          </div>
-
-          <Flowbite theme={customButtonTheme}>
-            <Button color='pink' className='w-full bg-[#EA168E] text-white hover:bg-[#EA168E] active:bg-[#EA168E] focus:bg-[#EA168E]' size='lg'>Filtrar</Button>
-          </Flowbite>
-        </div>
-      </aside>
-      <div className='grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 justify-items-center py-10 px-3 w-full'>
-        {example.map((el, index) => {
-          return (
-            <Link className='h-min' to='/login' key={el.title}>
-              <Card
-                className="max-w-[21rem] bg-[#EEF2F5]"
-                imgAlt="Placeholder image"
-                imgSrc="https://placehold.co/600x400"
-              >
-                <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  {el.title}
-                </h5>
-                <div className='flex flex-wrap gap-2'>
-                  {el.tags.map((tag, index) => {
-                    return (
-                      <Badge size='sm' color={['warning', 'success', 'purple', 'info', 'indigo', 'pink'][Math.floor(Math.random() * 6)]} key={el.title + tag}>{tag}</Badge>
-                    )
-                  })}
+            <div className='grid grid-cols-2 gap-2'>
+              <div className='mb-3'>
+                <div className="mb-2">
+                  <Label value='Baños:' className='text-lg font-semibold'></Label>
                 </div>
-                <p className="font-normal text-gray-700 dark:text-gray-400">
-                  {el.description}
-                </p>
-              </Card>
-            </Link>
-          )
-        })}
+
+                <TextInput type="number" placeholder="2" />
+              </div>
+
+              <div className='mb-3'>
+                <div className="mb-2">
+                  <Label value='Habitaciones:' className='text-lg font-semibold'></Label>
+                </div>
+
+                <TextInput type="number" placeholder="4" />
+              </div>
+
+            </div>
+
+            <div className='mb-3'>
+              <div className="mb-2">
+                <Label value='Precio Maximo:' className='text-lg font-semibold'></Label>
+              </div>
+
+              <TextInput type="number" placeholder="100$" />
+            </div>
+
+            <Flowbite theme={customButtonTheme}>
+              <Button color='pink' className='w-full bg-[#EA168E] text-white hover:bg-[#EA168E] active:bg-[#EA168E] focus:bg-[#EA168E]' size='lg'>Filtrar</Button>
+            </Flowbite>
+          </div>
+        </aside>
+        <div className='grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 justify-items-center py-10 px-3 w-full'>
+          {example.map((el, index) => {
+            return (
+              <Link className='h-min' to='/login' key={el.title}>
+                <Card
+                  className="max-w-[21rem] bg-[#EEF2F5]"
+                  imgAlt="Placeholder image"
+                  imgSrc="https://placehold.co/600x400"
+                >
+                  <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                    {el.title}
+                  </h5>
+                  <div className='flex flex-wrap gap-2'>
+                    {el.tags.map((tag, index) => {
+                      return (
+                        <Badge size='sm' color={['warning', 'success', 'purple', 'info', 'indigo', 'pink'][Math.floor(Math.random() * 6)]} key={el.title + tag}>{tag}</Badge>
+                      )
+                    })}
+                  </div>
+                  <p className="font-normal text-gray-700 dark:text-gray-400">
+                    {el.description}
+                  </p>
+                </Card>
+              </Link>
+            )
+          })}
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import {Avatar, Dropdown, Navbar} from "flowbite-react";
+import { Avatar, Dropdown, Navbar } from "flowbite-react";
 import Search from './Search.jsx';
 
 function Nav() {
@@ -17,17 +17,17 @@ function Nav() {
   }
 
   return (
-    <Navbar className='flex justify-evenly bg-azul__Oscuro text-white'>
+    <Navbar className='flex justify-evenly bg-[#002060] text-white' style={{ borderBottom: '1px solid #cdcdcd' }}>
       <Navbar.Brand href={links.home}>
-        <img src="./public/Logo M&R.png" className="mr-3 h-6 sm:h-9" alt="Logo M&R" />
+        <img src="./public/LogoM&R.png" className="mr-3 h-6 sm:h-9" alt="Logo M&R" />
         <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">M&R</span>
       </Navbar.Brand>
 
       <div className='flex justify-end w-max'>
-        <Search>        
+        <Search>
         </Search>
       </div>
-      
+
       <div className="flex md:order-2">
         <Dropdown
           arrowIcon={false}
