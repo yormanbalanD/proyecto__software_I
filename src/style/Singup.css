@@ -1,0 +1,15 @@
+body{
+    height: 100%;
+    background: rgba(0,32,96);
+    
+    
+}
+
+
+
+.error-message{
+color: red;
+font-weight: 700;
+font-size: 12px;
+}
+
