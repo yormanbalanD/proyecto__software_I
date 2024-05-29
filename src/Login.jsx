@@ -5,9 +5,6 @@ import React from 'react'
 import { Button, Checkbox, Label, TextInput } from "flowbite-react"
 import { Footer } from "flowbite-react";
 
-
-
-
 export default function Login() {
   return (
     <div class="bg-[#01205f] flex-col flex justify-between min-h-screen">
@@ -50,7 +47,6 @@ export default function Login() {
     </div>
   );
 }
-
 export function Footer_page() {
   return (
     <div class="bg-[#eef2f4] rounded-lg h-[140px] p-5">
@@ -62,13 +58,13 @@ export function Footer_page() {
             alt="#"
             name="M&R"
           />
-        </div>
+        </div >
+        
         <Footer.Divider />
         <Footer.Copyright href="#" by="M&R™" year={2024} />
       </div>
-    </div>
-      
-    
+    </div> 
+  
   );
 }
 
