@@ -175,7 +175,7 @@ const AuthButtons = () => (
   <div className="flex justify-end z-10 ">
     <div className="justify-end flex flex-col">
       <div className="px-4 py-2 rounded-lg hover:bg-white inline-block">
-        <a href="#" className="font-bold hover:text-purple-700">
+        <a href="#" className="font-bold hover:text-purple-600  ">
           Iniciar sesión
         </a>
       </div>
@@ -185,7 +185,7 @@ const AuthButtons = () => (
           Registrarse
         </a>
       </div>
-    </div>
+    </div>  
   </div>
 );
 export default function Login() {
