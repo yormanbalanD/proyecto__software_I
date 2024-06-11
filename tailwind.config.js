@@ -8,7 +8,11 @@ export default {
     flowbite.content()
   ],
   theme: {
-    extend: {},
+    colors: {
+      morado: '#641459',
+      rosado: '#b2559b',
+      verde: '#00463b'
+    }
   },
   plugins: [
     flowbite.plugin()
