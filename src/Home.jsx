@@ -5,7 +5,7 @@ import NuestrosServicios from './components/NuestrosServicios'
 import PorqueElegirnos from './components/PorqueElegirnos'
 import NuestroEquipo from './components/NuestroEquipo'
 import Testimonios from './components/Testimonios'
-import RegistrateAqui from './components/RegistrateAqui'
+import Footer from './components/Footer'
 
 
 export default function Home() {
@@ -17,7 +17,7 @@ export default function Home() {
         <PorqueElegirnos></PorqueElegirnos>
         <NuestroEquipo></NuestroEquipo>
         <Testimonios></Testimonios>
-        <RegistrateAqui></RegistrateAqui>
+        <Footer />
     </div>
   )
 }
