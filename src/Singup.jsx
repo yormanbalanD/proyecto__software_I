@@ -1,5 +1,3 @@
-import fondo from "/public/Fondo_SignUp.jpg"
-
 export default function Singup() {
   // const {
   //   register,
@@ -21,7 +19,7 @@ export default function Singup() {
     <div className="grid grid-cols-3 h-screen">
       {/* SIDE IMAGE */}
       <div className="col-span-1">
-        <img src={fondo} alt="fondo de inicio" className="w-full h-full"/>
+        <img src='/public/Fondo_SignUp.jpg' alt="fondo de inicio" className="w-full h-full"/>
       </div>
       {/*  SIGN UP FORM */}
       <form className="col-span-2 px-8 py-4">

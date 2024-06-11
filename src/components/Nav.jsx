@@ -19,7 +19,7 @@ function Nav() {
   return (
     <Navbar className='flex justify-evenly bg-[#002060] text-white' style={{ borderBottom: '1px solid #cdcdcd' }}>
       <Navbar.Brand href={links.home}>
-        <img src="./public/LogoM&R.png" className="mr-3 h-6 sm:h-9" alt="Logo M&R" />
+        <img src="/public/LogoM&R.png" className="mr-3 h-6 sm:h-9" alt="Logo M&R" />
         <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">M&R</span>
       </Navbar.Brand>
 

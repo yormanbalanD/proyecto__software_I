@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import Catalogo from './Catalogo.jsx'
+import Catalogo from './Catalogo'
 import Home from './Home'
 
 import { BrowserRouter, RouterProvider } from 'react-router-dom'
