@@ -9,6 +9,7 @@ import Login from './Login.jsx'
 import Singup from './Singup.jsx'
 import './index.css'
 
+
 const router = createBrowserRouter([
   {
     path: '/',
