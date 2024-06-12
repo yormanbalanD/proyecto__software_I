@@ -5,8 +5,7 @@ import Home from './Home'
 
 import { BrowserRouter, RouterProvider } from 'react-router-dom'
 import { createBrowserRouter } from 'react-router-dom'
-import Login from './Login.jsx'
-import Singup from './Singup.jsx'
+import LoginSingUpContainer from './LoginSingUpContainer.jsx'
 import './index.css'
 
 const router = createBrowserRouter([
@@ -16,11 +15,11 @@ const router = createBrowserRouter([
   }, 
   {
     path: '/login',
-    element: <Login />,
+    element: <LoginSingUpContainer defaultForm='login' />,
   },
   {
     path: '/singup',
-    element: <Singup />,
+    element: <LoginSingUpContainer defaultForm='signup' />,
   },
   {
     path: '/catalogo',
