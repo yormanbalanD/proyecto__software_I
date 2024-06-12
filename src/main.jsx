@@ -18,7 +18,7 @@ const router = createBrowserRouter([
     element: <LoginSingUpContainer defaultForm='login' />,
   },
   {
-    path: '/singup',
+    path: '/signup',
     element: <LoginSingUpContainer defaultForm='signup' />,
   },
   {

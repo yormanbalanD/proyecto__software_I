@@ -5,7 +5,7 @@ import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignUpForm';
 
 const LoginSignupContainer = ({defaultForm = 'login'}) => {
-  const [showLogin, setShowLogin] = useState(defaultForm == 'login');
+  const [showLogin, setShowLogin] = useState(defaultForm === 'login');
   const [showSignup, setShowSignup] = useState(defaultForm === 'signup');
 
   const handleToggleForm = () => {
@@ -43,18 +43,18 @@ const AuthButtons = ({ showLogin, toggleForm }) => {
       <label
         htmlFor="login-radio"
         className={`flex items-center gap-2 ${
-          showLogin ? "bg-transparent" : "bg-white text-black"
+          !showLogin ? "bg-transparent" : "bg-white text-black"
         }`}
-        onClick={() => handleFormChange('login')}
+        onClick={() => handleFormChange('signup')}
       >
         <p className={"m-auto"}>Iniciar sesión</p>
       </label>
       <label
         htmlFor="signup-radio"
         className={`flex items-center gap-2 ${
-          !showLogin ? "bg-transparent" : "bg-white text-black"
+          showLogin ? "bg-transparent" : "bg-white text-black"
         }`}
-        onClick={() => handleFormChange('signup')}
+        onClick={() => handleFormChange('login')}
       >
         <p className="m-auto">Registrarse</p>
       </label>
