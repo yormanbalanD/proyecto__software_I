@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 
 import Input from "./Input";
 import ContainerInput from "./ContainerInput";
@@ -11,6 +12,12 @@ const SingUpForm = () => {
         { value: 'rifJ', label: 'RIF-J' },
         { value: 'rifV', label: 'RIF-V' },
     ];
+
+    const [showPassword, setShowPassword] = useState(false);
+  
+    const togglePasswordVisibility = () => {
+      setShowPassword(!showPassword);
+    };
 
     return (
     <form className="px-8 py-4">
@@ -67,15 +74,21 @@ const SingUpForm = () => {
         </ContainerInput>
         <ContainerInput 
           svg={<svg className="w-6 h-6 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path fillRule="evenodd" d="M8 10V7a4 4 0 1 1 8 0v3h1a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h1Zm2-3a2 2 0 1 1 4 0v3h-4V7Zm2 6a1 1 0 0 1 1 1v3a1 1 0 1 1-2 0v-3a1 1 0 0 1 1-1Z" clipRule="evenodd"/></svg>}
-          Input={
-            <Input type="password" placeholder="Contraseña"></Input>
-          }>
+          Input={<Input type="password" placeholder="Contraseña"></Input>}
+          extraElement={
+            <PasswordButton
+              showPassword={showPassword}
+              togglePasswordVisibility={togglePasswordVisibility}>
+            </PasswordButton>}>
         </ContainerInput> 
         <ContainerInput 
           svg={<svg className="w-6 h-6 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path fillRule="evenodd" d="M10 5a2 2 0 0 0-2 2v3h2.4A7.48 7.48 0 0 0 8 15.5a7.48 7.48 0 0 0 2.4 5.5H5a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h1V7a4 4 0 1 1 8 0v1.15a7.446 7.446 0 0 0-1.943.685A.999.999 0 0 1 12 8.5V7a2 2 0 0 0-2-2Z" clipRule="evenodd"/><path fillRule="evenodd" d="M10 15.5a5.5 5.5 0 1 1 11 0 5.5 5.5 0 0 1-11 0Zm6.5-1.5a1 1 0 1 0-2 0v1.5a1 1 0 0 0 .293.707l1 1a1 1 0 0 0 1.414-1.414l-.707-.707V14Z" clipRule="evenodd"/></svg>}
-          Input={
-            <Input type="password"  placeholder="Confirmar contraseña"></Input>
-          }>
+          Input={<Input type="password"  placeholder="Confirmar contraseña"></Input>}
+          extraElement={
+            <PasswordButton
+              showPassword={showPassword}
+              togglePasswordVisibility={togglePasswordVisibility}>
+            </PasswordButton>}>
         </ContainerInput>
       
         <div className="mb-3 col-span-2 flex items-center">
