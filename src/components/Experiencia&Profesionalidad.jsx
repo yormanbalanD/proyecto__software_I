@@ -23,7 +23,7 @@ export default function ExperienciaProfesionalidad() {
                 </div>
 
                 <div className="bg-[#d9d9d9] h-[400px]  mt-10 text-center  ">
-                    <img className="object-fill object-center w-full h-[400px]" src="" alt="" />
+                    <img className="object-fill object-center w-full h-[400px]" src="" alt="pega un enlace valido" />
                 </div>
 
             </div>
