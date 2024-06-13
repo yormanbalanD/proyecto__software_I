@@ -1,13 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import Catalogo from './Catalogo.jsx'
+import Catalogo from './Catalogo'
 import Home from './Home'
 
 import { BrowserRouter, RouterProvider } from 'react-router-dom'
 import { createBrowserRouter } from 'react-router-dom'
-import Login from './Login.jsx'
-import Singup from './Singup.jsx'
+import LoginSingUpContainer from './LoginSingUpContainer.jsx'
 import './index.css'
+import Nav from './components/Nav.jsx'
 
 const router = createBrowserRouter([
   {
@@ -16,15 +16,19 @@ const router = createBrowserRouter([
   }, 
   {
     path: '/login',
-    element: <Login />,
+    element: <LoginSingUpContainer defaultForm='login' />,
   },
   {
     path: '/singup',
-    element: <Singup />,
+    element: <LoginSingUpContainer defaultForm='signup' />,
   },
   {
     path: '/catalogo',
     element: <Catalogo />
+  },
+  {
+    path: '/Nav',
+    element: <Nav defaultForm="nav"/>
   }
 ])
 
