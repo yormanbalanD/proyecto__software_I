@@ -11,7 +11,8 @@ export default {
     colors: {
       morado: '#641459',
       rosado: '#b2559b',
-      verde: '#00463b'
+      verde: 'rgb(7,127,116)',
+      verdeOscuro: '#00463b'
     }
   },
   plugins: [

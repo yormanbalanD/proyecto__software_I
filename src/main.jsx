@@ -8,12 +8,13 @@ import { createBrowserRouter } from 'react-router-dom'
 import Login from './Login.jsx'
 import Singup from './Singup.jsx'
 import './index.css'
+import Vivienda from './Vivienda.jsx'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Home />,
-  }, 
+  },
   {
     path: '/login',
     element: <Login />,
@@ -25,11 +26,20 @@ const router = createBrowserRouter([
   {
     path: '/catalogo',
     element: <Catalogo />
+  }, {
+    path: '/catalogo/:idVivienda',
+    element: <Vivienda />,
+    loader: ({ params }) => {
+      return params.idVivienda
+    },
+    action: ({ params }) => {
+      return params.idVivienda
+    }
   }
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
+    <RouterProvider router={router} />
   </React.StrictMode>,
 )
