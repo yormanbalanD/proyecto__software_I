@@ -1,64 +1,53 @@
-import React from 'react'
+import { FaUserCircle, FaBell } from "react-icons/fa";
 
-import { Avatar, Dropdown, Navbar } from "flowbite-react";
-import Search from './Search.jsx';
-
-function Nav() {
-  const links = {
-    vender: '#',
-    ayuda: '#',
-    tiendas: '#',
-    historial: '#',
-    home: '#',
-    perfil: '#',
-    ajustes: '#',
-    saldo: '#',
-    logOut: '#',
-  }
-
+function NavLink({ children, href }) {
   return (
-    <Navbar className='flex justify-evenly bg-[#002060] text-white' style={{ borderBottom: '1px solid #cdcdcd' }}>
-      <Navbar.Brand href={links.home}>
-        <img src="/public/LogoM&R.png" className="mr-3 h-6 sm:h-9" alt="Logo M&R" />
-        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">M&R</span>
-      </Navbar.Brand>
-
-      <div className='flex justify-end w-max'>
-        <Search>
-        </Search>
-      </div>
-
-      <div className="flex md:order-2">
-        <Dropdown
-          arrowIcon={false}
-          inline
-          label={
-            <Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded />
-          }
-        >
-          <Dropdown.Header>
-            <span className="block text-sm">Nombre Apellido</span>
-            <span className="block truncate text-sm font-medium">usuario@gmail.com</span>
-          </Dropdown.Header>
-          <Dropdown.Item href={links.perfil}>Mi perfil</Dropdown.Item>
-          <Dropdown.Item href={links.ajustes}>Ajustes</Dropdown.Item>
-          <Dropdown.Item href={links.saldo}>Saldo🤑</Dropdown.Item>
-          <Dropdown.Divider />
-          <Dropdown.Item href={links.logOut}>Cerrar sesión</Dropdown.Item>
-        </Dropdown>
-        <Navbar.Toggle />
-      </div>
-      <Navbar.Collapse className='mx-3'>
-        <Navbar.Link href={links.home} className='hover:text-gray-400 text-white'>
-          Home
-        </Navbar.Link>
-        <Navbar.Link href={links.vender} className='hover:text-gray-400 text-white'>Vender</Navbar.Link>
-        <Navbar.Link href={links.tiendas} className='hover:text-gray-400 text-white'>Tiendas Oficiales</Navbar.Link>
-        <Navbar.Link href={links.historial} className='hover:text-gray-400 text-white'>Historial</Navbar.Link>
-        <Navbar.Link href={links.ayuda} className='hover:text-gray-400 text-white'>Ayuda</Navbar.Link>
-      </Navbar.Collapse>
-    </Navbar>
+    <li className="mr-6">
+      <a href={href} className="text-black font-bold hover:text-[#891f62]">
+        {children}
+      </a>
+    </li>
   );
 }
 
-export default Nav
+export default function Navbar() {
+  return (
+    <nav className="bg-[#f2f3f2] py-2 w-full flex">
+      <div className="px-4 flex justify-between w-full">
+        <div className="h-20 flex">
+          <img
+            src="/LogoM&R.png"
+            alt="An image that represents M&R Inversiones y Desarrollo"
+            className="h-full"
+          />
+        </div>
+
+        <div className="flex items-center w-full justify-end">
+          <div className="flex justify-end">
+            <ul className="flex items-center">
+              <NavLink href="#">Inicio</NavLink>
+              <NavLink href="#">Nosotros</NavLink>
+              <NavLink href="#">Servicios</NavLink>
+              <NavLink href="#">Catálogo</NavLink>
+              <NavLink href="#">Contacto</NavLink>
+              <NavLink href="#">Más</NavLink>
+            </ul>
+          </div>
+
+          <button className="bg-[#ce4a9c] hover:bg-purple-600 text-white h-min font-bold py-2 px-3 rounded">
+            Registrarme
+          </button>
+
+          <div className="flex items-center gap-2 px-4">
+            <div>
+              <FaBell className="text-xl" />
+            </div>
+            <div>
+              <FaUserCircle className="text-2xl" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
+}

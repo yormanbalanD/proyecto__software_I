@@ -12,7 +12,7 @@ function App() {
   const [tipoBusqueda, setTipoBusqueda] = useState("Venta")
 
   return (
-    <div className="bg-white mb-14">
+    <div className="bg-white mt-5 mb-14">
       <div className="max-w-7xl ml-10 px-4 py-12 flex items-center justify-between">
         <div className="w-1/2">
           <h1 className="text-4xl text-[#641459] leading-normal font-bold mb-12">Hacemos de tus Sueños Inmobiliarios una Realidad</h1>
@@ -20,7 +20,7 @@ function App() {
             Bienvenidos a M&R Inversiones y Desarrollo, una organización innovadora dedicada a ofrecer servicios
             inmobiliarios de calidad y asesoramiento a nuestros clientes y empresas afines.
           </p>
-          <button className="bg-[#641459] text-white px-6 py-2 mx-10 text-xs hover:bg-[#b2559b] shadow-md shadow-[#515151]">Ver más</button>
+          <button className="bg-verde text-white px-6 py-2 mx-10 text-sm font-semibold hover:bg-[#b2559b] shadow-md shadow-[#515151]">Ver más</button>
         </div>
         <div className="w-1/2 -mt-12 -mr-10 -mb-12 relative">
           <img
@@ -40,7 +40,7 @@ function App() {
                 )
                 } else {
                 return (
-                  <button variant="secondary" onClick={() => setTipoBusqueda(val.label)} className="bg-[#641459] hover:bg-white hover:text-[#641459] shadow-[0px_-3px_14px_0px_rgba(0,0,0,0)_inset] text-white text-xs h-min px-8 py-3">
+                  <button variant="secondary" onClick={() => setTipoBusqueda(val.label)} className="bg-verde hover:bg-white hover:text-[#641459] shadow-[0px_-3px_14px_0px_rgba(0,0,0,0)_inset] text-white text-xs h-min px-8 py-3">
                     {val.label}
                   </button>
                 )
