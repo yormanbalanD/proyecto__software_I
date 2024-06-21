@@ -8,11 +8,16 @@ import { createBrowserRouter } from 'react-router-dom'
 import LoginSingUpContainer from './LoginSingUpContainer.jsx'
 import './index.css'
 import Vivienda from './Vivienda.jsx'
+import Contacto from './Contacto.jsx'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Home />,
+  },
+  {
+    path: '/contacto',
+    element: <Contacto />
   },
   {
     path: '/login',
