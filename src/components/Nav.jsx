@@ -28,7 +28,7 @@ export default function Navbar() {
               <NavLink href="#">Inicio</NavLink>
               <NavLink href="#">Nosotros</NavLink>
               <NavLink href="#">Servicios</NavLink>
-              <NavLink href="#">Catálogo</NavLink>
+              <NavLink href="/catalogo">Catálogo</NavLink>
               <NavLink href="#">Contacto</NavLink>
               <NavLink href="#">Más</NavLink>
             </ul>

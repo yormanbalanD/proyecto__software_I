@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import Catalogo from './Catalogo'
 import Home from './Home'
+import Perfil from './components/perfil/Container.jsx' 
 
 import { BrowserRouter, RouterProvider } from 'react-router-dom'
 import { createBrowserRouter } from 'react-router-dom'
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
   {
     path: '/signup',
     element: <LoginSingUpContainer defaultForm='signup' />,
+  },
+  {
+    path: '/perfil',
+    element: <Perfil />
   },
   {
     path: '/catalogo',

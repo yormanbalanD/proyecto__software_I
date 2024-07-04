@@ -1,5 +1,6 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
+import Nav from './components/Nav'
 
 import CardVivienda from './components/catalogo/CardVivienda';
 
@@ -11,6 +12,26 @@ import { RiStarSFill } from "react-icons/ri";
 import { FaTwitterSquare } from "react-icons/fa";
 import { RxDimensions } from "react-icons/rx";
 import { MdBed, MdDriveEta, MdBathtub, MdCircle } from 'react-icons/md'
+
+
+/* 
+  [{
+    nombre: string,
+    m2: number,
+    precio: number,
+    desc: string,
+    habitaciones: [{
+      tipo: string,
+      cantidad: number
+    }],
+    tipo: string,
+    like: boolean,
+    tags: string[],
+    mapa: string, // Esta ubicacion puede ser dos cosas o las coordenadas de la ubicacion o el link al google map
+    img: [int[]], // Array con todas las imagenes de la vivienda, si se guarda en formato Blob en la base de datos cada imagen debe ser un arrreglo de enteros
+    idVendedor: int, // El id del vendedor que vende la vivienda, para recuperar al vendedor se debe de hacer un fetch a los datos del vendedor  
+  }]
+*/
 
 const vivienda = [{
   nombre: 'Apartamento Roraima',
@@ -80,6 +101,7 @@ export default function Vivienda() {
 
   return (
     <>
+      <Nav></Nav>
       <div className='flex w-full h-auto'>
         <div className='w-full py-10 ps-14 h-auto'>
           <div className='flex py-5 justify-between'>
