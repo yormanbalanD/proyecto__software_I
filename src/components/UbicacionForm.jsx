@@ -1,6 +1,6 @@
 import React from "react";
-import Input from "./Input";
-import ContainerInput from "./ContainerInput";
+// import Input from "./Input";
+// import ContainerInput from "./ContainerInput";
 
 const UbicacionForm = () => {
 
@@ -12,7 +12,7 @@ const UbicacionForm = () => {
 
     return (
         <form className="grid grid-cols-2">
-            <ContainerInput 
+            {/* <ContainerInput 
                 svg={<svg className="w-6 h-6 text-gray-900 dark:text-white " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path fillRule="evenodd" d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z" clipRule="evenodd"/></svg>}
                 Input={<Input type="text" placeholder="Nombre"></Input>} className="">
             </ContainerInput> 
@@ -44,7 +44,7 @@ const UbicacionForm = () => {
                 <label htmlFor="acepto" className="inline-block ml-2 text-gray-700 text-left">Consiento que M&R Inversiones y Desarrollos, trate mis datos personales con la finalidad de remitirme comunicaciones comerciales por medios ordinarios y/o electrónicos sobre sus productos y/o servicios</label>
             </div>
 
-            <button className="place-self-center bg-rosado active:shadow-none text-white px-4 py-2 rounded-lg shadow-xl hover:bg-morado mt-8">Enviar</button>
+            <button className="place-self-center bg-rosado active:shadow-none text-white px-4 py-2 rounded-lg shadow-xl hover:bg-morado mt-8">Enviar</button> */}
         </form>
     )
 }
