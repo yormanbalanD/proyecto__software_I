@@ -15,7 +15,7 @@ export default function SearchBar({ value, onChange }) {
 
   return (
     <div className="flex shadow-[0px_0px_15px_3px_rgba(0,0,0,0.3)] bg-white rounded-md py-3 px-5 w-full max-w-2xl mt-12">
-      <div className={`${focus ? "shadow-[2px_2px_4px_0px_rgba(0,0,0,0.35)]" : ""} w-full px-2 me-2 flex items-center border-2 border-[#0000001b] duration-75`}>
+      <div className={`${focus ? "shadow-[2px_2px_4px_0px_rgba(0,0,0,0.35)]" : ""} w-full px-2 me-3 flex items-center border-2 border-[#0000001b] duration-75`}>
         <label htmlFor="barraDeBusquedaViviendas">
           <FaSearch className={`text-lg duration-75 text-gray-500 ${focus ? "opacity-75" : "opacity-45"}`} />
         </label>
