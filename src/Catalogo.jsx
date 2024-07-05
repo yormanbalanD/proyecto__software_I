@@ -1,5 +1,7 @@
 import ContainerCatalogo from "./components/catalogo/ContainerCatalogo"
 import AsideCatalogo from "./components/catalogo/AsideCatalogo"
+import Nav from "./components/Nav"
+import SearchBar from './components/catalogo/SearchBar'
 
 const example = [{
   nombre: 'Apartamento Roraima',
@@ -73,14 +75,17 @@ const example = [{
 }]
 
 export default function App() {
+
   return (
     <div>
-      <div>nav</div>
-      <div>barra de busqueda</div>
-      <div className="flex mt-14">
-        <AsideCatalogo />
-        <ContainerCatalogo viviendas={example} />
-      </div>
+      <Nav></Nav>
+      <main className="flex flex-col items-center">
+        <SearchBar></SearchBar>
+        <div className="flex mt-14">
+          <AsideCatalogo />
+          <ContainerCatalogo viviendas={example} />
+        </div>
+      </main>
     </div>
   )
 }

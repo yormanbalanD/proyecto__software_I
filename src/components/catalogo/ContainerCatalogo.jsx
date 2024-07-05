@@ -5,10 +5,10 @@ export default function ContainerCatalogo({ viviendas }) {
     const [tipoDeVista, setTipoDeVista] = useState('recuadro') // lista o recuadros
     console.log(viviendas)
     return (
-        <div className="flex py-8 relative mx-auto overflow-hidden w-full max-w-[63rem] scroll-smooth">
+        <div className="flex flex-wrap py-8 relative mx-auto overflow-hidden w-full scroll-smooth">
             {tipoDeVista == 'recuadro' && viviendas.map(el => {
                 return (
-                    <a key={el.nombre} href="#" className='mx-6 w-full min-w-72 block relative'>
+                    <a key={el.nombre} href="#" className='mx-6 w-full block relative'>
                         <div className='hover:shadow-[0px_0px_20px_3px_rgba(0,0,0,0.5)] duration-75'>
                             <header className="m-0">
                                 <img src="https://placehold.co/600x400" alt="" />
