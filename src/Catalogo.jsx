@@ -31,6 +31,7 @@ export default function App() {
       method: 'POST',
       body: JSON.stringify(filters),
       headers: {
+        'content-type': 'application/json',
         'ngrok-skip-browser-warning': 'true'
       }
     })
@@ -51,6 +52,7 @@ export default function App() {
         name: name
       }),
       headers: {
+        'content-type': 'application/json',
         'ngrok-skip-browser-warning': 'true'
       }
     })

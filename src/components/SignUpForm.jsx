@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from "react";
 
 import Input from '../components/formularios/Input';
 import ErrorMessage from '../components/formularios/ErrorMessage';
@@ -14,25 +13,26 @@ import { HiIdentification } from "react-icons/hi2"
 import { FaPhoneAlt } from "react-icons/fa"
 import { FaPencilAlt } from "react-icons/fa"
 
+import { useCookies } from 'react-cookie'
+import { useState, useEffect } from 'react'
+
+import URLBACKEND from '../config/env'
 
 const SchemaSingup = z.object({
-  nombres: z.string({
+  name: z.string({
     required_error: 'Introduzca el Nombre',
   }).min(3, {
     message: 'Los Nombres debe tener al menos 3 caracteres',
   }),
-  apellidos: z.string({
+  last_name: z.string({
     required_error: 'Introduzca los Apellidos',
   }).min(3, {
     message: 'Los Apellidos deben tener al menos 3 caracteres',
   }),
-  numeroDeDocumento: z.string({
+  document: z.string({
     required_error: 'Introduzca el Numero de Documento',
   }).min(7, {
     message: 'El Numero de Documento debe tener al menos 7 caracteres',
-  }),
-  telefono: z.string().min(11, {
-    message: 'El telefono debe tener al menos 11 caracteres',
   }),
   email: z.string({
     required_error: 'Introduzca el Correo Electronico',
@@ -40,9 +40,6 @@ const SchemaSingup = z.object({
     message: 'El Correo Electronico ingresado no es valido',
   }),
   password: z.string().min(8, {
-    message: 'La contraseña debe tener al menos 8 caracteres',
-  }),
-  confirmPassword: z.string().min(8, {
     message: 'La contraseña debe tener al menos 8 caracteres',
   })
 })
@@ -60,7 +57,31 @@ const SingUpForm = () => {
     { value: 'rifV', label: 'RIF-V' },
   ];
 
-  const onSubmit = (data) => console.log(data)
+  const requestCreateAccount = async (data) => {
+    const request = await fetch(`${URLBACKEND}/api/register`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'content-type': 'application/json',
+        'ngrok-skip-browser-warning': 'true'
+      }
+    })
+
+    if (request.status == 200) {
+      const response = await request.json()
+      setCookie('token', response.data.token)
+      setCookie('user', response.data.user)
+      alert('Se creo tu cuenta con éxito')
+      window.location.href = '/'
+    } else {
+      alert('Error, No se pudo crear la cuenta')
+      console.log(request)
+    }
+  }
+
+  const onSubmit = (data) => {
+    requestCreateAccount(data)
+  }
 
   useEffect(() => {
     if (cookies.token) {
@@ -82,24 +103,24 @@ const SingUpForm = () => {
 
       <div className="grid grid-cols-2 gap-5">
         <div>
-          <Input icon={<FaUser className="text-2xl" />} label={'Nombre'} type={'text'} register={register('nombres')} name={'nombres'} />
+          <Input icon={<FaUser className="text-2xl" />} label={'Nombre'} type={'text'} register={register('name')} name={'nombres'} />
           {errors.nombres && <ErrorMessage value={errors.nombres.message} />}
         </div>
 
         <div>
-          <Input icon={<FaPencilAlt className="text-2xl" />} label={'Apellidos'} type={'text'} register={register('apellidos')} name={'apellidos'} />
+          <Input icon={<FaPencilAlt className="text-2xl" />} label={'Apellidos'} type={'text'} register={register('last_name')} name={'apellidos'} />
           {errors.apellidos && <ErrorMessage value={errors.apellidos.message} />}
         </div>
 
         <div>
-          <Input icon={<HiIdentification className="text-3xl" />} label='Numero de Documento' type='text' register={register('numeroDeDocumento')} name={'numeroDeDocumento'} />
+          <Input icon={<HiIdentification className="text-3xl" />} label='Numero de Documento' type='text' register={register('document')} name={'numeroDeDocumento'} />
           {errors.numeroDeDocumento && <ErrorMessage value={errors.numeroDeDocumento.message} />}
         </div>
 
-        <div>
+        {/* <div>
           <Input icon={<FaPhoneAlt className="text-2xl" />} label='Telefono' type={'tel'} register={register('telefono')} name={'telefono'} />
           {errors.telefono && <ErrorMessage value={errors.telefono.message} />}
-        </div>
+        </div> */}
 
         <div>
           <Input icon={<MdEmail className="text-3xl" />} label={'Correo Electronico'} type={'email'} register={register('email')} name={'email'} />
@@ -111,10 +132,10 @@ const SingUpForm = () => {
           {errors.password && <ErrorMessage value={errors.password.message} />}
         </div>
 
-        <div>
+        {/* <div>
           <Input icon={<FaLock className="text-2xl" />} label={'Confirmar Contraseña'} type={'password'} register={register('confirmPassword')} name={'confirmPassword'} />
           {errors.confirmPassword && <ErrorMessage value={errors.confirmPassword.message} />}
-        </div>
+        </div> */}
 
         <div className="mb-3 col-span-2 flex items-center">
           <input type="checkbox" id="acepto" name="acepto" className="block w-h-5 rounded-md focus:outline-none focus:ring-morado pr-2 checked:bg-morado" required />
