@@ -1,2 +1,2 @@
-/public/*  /public/	200
+/public/*  /public/:splat
 /*    /index.html   200
