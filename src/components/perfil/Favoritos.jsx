@@ -1,31 +1,48 @@
-import { useState } from "react"
-import { MdBed, MdDriveEta, MdBathtub, MdCircle } from 'react-icons/md'
-import { PiMapPinFill } from "react-icons/pi"
-import { HiMiniSquares2X2 } from "react-icons/hi2"
-import { FaList } from "react-icons/fa"
-import CardVivienda from "./CardVivienda"
+import React, { useState, useEffect } from 'react'
+import URLBACKEND from '../../config/env'
+import { PiMapPinFill } from 'react-icons/pi'
 import { useCookies } from 'react-cookie'
 
-export default function ContainerCatalogo({ viviendas }) {
-  const [tipoDeVista, setTipoDeVista] = useState('recuadro') // lista o recuadros
+export default function Favoritos({ tipoUsuario }) {
+  const [viviendas, setViviendas] = useState([])
 
+  const [cookies, setCookie] = useCookies(['token']);
+  const [user, setUser] = useState(cookies.user)
+
+  const getViviendas = async () => {
+    const request = await fetch(`${URLBACKEND}/api/estate/listaFavoritos/${user.id}`, {
+      method: 'GET',
+      headers: {
+        'ngrok-skip-browser-warning': 'true'
+      }
+    })
+
+    if (request.status == 200) {
+      const response = await request.json()
+
+      const temp = []
+
+      response.data.forEach(el => {
+        temp.push(el.estate)
+      })
+
+      setViviendas(temp)
+      console.log(response)
+    } else {
+      console.log(request)
+    }
+  }
+
+  useEffect(() => {
+    getViviendas()
+  }, [])
 
   return (
-    <div className="w-full">
-      <div className="px-20 flex justify-between items-center">
-        <span className="text-lg font-bold">Resultados de Busqueda</span>
-        <div className="flex gap-x-3">
-          <button onClick={() => setTipoDeVista('recuadro')} className="p-2 rounded bg-morado text-white"><HiMiniSquares2X2 className='text-xl' /></button>
-          <button onClick={() => setTipoDeVista('lista')} className="p-2 rounded bg-morado text-white"><FaList className='text-xl' /></button>
-        </div>
-      </div>
-      <div className={`flex flex-wrap py-8 relative gap-x-7 justify-center w-full ${tipoDeVista == 'lista' ? 'flex-col px-20 gap-y-7' : 'gap-y-14'}`}>
+    <div className='p-4 w-full'>
+      <h1 className='text-4xl font-bold mb-5 text-center'>Favoritos</h1>
 
-        {tipoDeVista == 'recuadro' && viviendas.map(el => {
-          return (<CardVivienda prop={el} key={el.id} />)
-        })}
-
-        {tipoDeVista == 'lista' && viviendas.map(el => {
+      <div className='flex flex-wrap gap-y-10 px-7 py-10'>
+        {viviendas.map(el => {
           return (
             <div key={el.id} className='hover:shadow-[0px_0px_20px_3px_rgba(0,0,0,0.5)] duration-75 w-full flex relative border'>
               <header className="m-0 w-80 flex-shrink-0">

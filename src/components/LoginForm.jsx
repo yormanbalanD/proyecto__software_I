@@ -1,43 +1,89 @@
 import React from "react";
 import { useState } from "react";
 
-import Input from "./Input";
-import ContainerInput from "./ContainerInput";
-import PasswordButton from "./PasswordButton";
+import { set, z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from '@hookform/resolvers/zod'
+import ErrorMessage from "./formularios/ErrorMessage";
 
-const LoginForm = () => {
-    const [showPassword, setShowPassword] = useState(false);
-  
-    const togglePasswordVisibility = () => {
-      setShowPassword(!showPassword);
-    };
-  
-    return (
-      <form className="px-8 py-4 flex flex-col justify-center h-full w-full">
-        <img src="./public/LogoM&R.png" className="w-28 m-2 mb-10 flex self-center"/>
-        <ContainerInput 
-          svg={<svg className="w-6 h-6 text-gray-900 dark:text-white " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path fillRule="evenodd" d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z" clipRule="evenodd"/></svg>}
-          Input={<Input type="text" placeholder="Usuario"></Input>}>
-        </ContainerInput>  
-        <ContainerInput 
-            svg={<svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path fillRule="evenodd" d="M8 10V7a4 4 0 1 1 8 0v3h1a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h1Zm2-3a2 2 0 1 1 4 0v3h-4V7Zm2 6a1 1 0 0 1 1 1v3a1 1 0 1 1-2 0v-3a1 1 0 0 1 1-1Z" clipRule="evenodd"/></svg>}
-            Input={<Input type={showPassword ? "text" : "password"} placeholder={"Contraseña"}></Input>}
-            extraElement={<PasswordButton showPassword={showPassword} togglePasswordVisibility={togglePasswordVisibility}></PasswordButton>}>
-        </ContainerInput>        
-        <div className="flex items-center justify-between mx-2 mb-3 mt-2">
-          <div className="flex items-center gap-2">
-            <input type="checkbox" className="rounded checked:bg-morado focus:ring-morado"/>
-            <span>Recordar</span>
-          </div>
-          <a href="#" className="text-black text-sm hover:text-rosado">
-            ¿Has olvidado tu contraseña?
-          </a>
+import Input from "./formularios/Input";
+import { FaLock } from "react-icons/fa6"
+import { MdEmail } from "react-icons/md"
+import { useCookies } from "react-cookie";
+import URLBACKEND from "../config/env";
+import { redirect } from "react-router-dom";
+import { redirectDocument } from "react-router-dom";
+import { useEffect } from "react";
+
+const SchemaLogin = z.object({
+  email: z.string({
+    required_error: 'Introduzca el Correo Electronico',
+  }).email({
+    message: 'El Correo Electronico ingresado no es valido',
+  }),
+  password: z.string({
+    required_error: 'Introduzca la Contraseña',
+  }).min(8, {
+    message: 'La contraseña debe tener al menos 8 caracteres',
+  }),
+})
+
+const LoginForm = ({ value, onChange }) => {
+  const { register, handleSubmit, watch, formState: { errors } } = useForm({
+    resolver: zodResolver(SchemaLogin)
+  })
+  const [cookies, setCookie] = useCookies(['token']);
+
+  const onSubmit = async (data) => {
+    const request = await fetch(`${URLBACKEND}/api/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+
+    if (request.status === 200) {
+      const response = await request.json()
+      console.log(response)
+      setCookie('token', response.data.token)
+      setCookie('user', response.data.user)
+
+      alert('Iniciaste Sesión con éxito')
+      window.location.href = '/'
+    } else {
+      alert('Error, Usuario o contraseña incorrectos')
+    }
+  }
+
+  useEffect(() => {
+    if (cookies.token) {
+      window.location.href = '/'
+    }
+  }, [])
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)} className="px-8 py-4 flex flex-col justify-center h-full w-full max-w-md mx-auto">
+      <img src="./public/LogoM&R.png" className="w-32 m-2 mb-10 flex self-center" />
+      <div className={'mb-5'}>
+        <Input type='text' icon={<MdEmail className="text-3xl" />} label={'Correo Electronico'} register={register('email')} name={'email'} />
+        {errors.email && <ErrorMessage value={errors.email.message} />}
+      </div>
+      <div className={'mb-5'}>
+        <Input type='password' icon={<FaLock className="text-2xl" />} label={'Contraseña'} register={register('password')} name={'password'} />
+        {errors.password && <ErrorMessage value={errors.password.message} />}
+      </div>
+      {/* <div className="flex items-center justify-between mb-10 mt-2">
+        <div className="flex items-center gap-2">
+          <input type="checkbox" className="rounded checked:bg-morado focus:ring-morado" />
+          <span>Recordar</span>
         </div>
-        <button className="bg-rosado active:shadow-none text-white px-4 py-2 rounded-lg shadow-xl hover:bg-morado mt-8">
-          Iniciar sesión
-        </button>
-      </form>
-    );
-  };
+      </div> */}
+      <button type="submit" className="bg-rosado active:shadow-none text-white px-4 py-2 rounded-lg shadow-xl hover:bg-morado">
+        Iniciar sesión
+      </button>
+    </form>
+  );
+};
 
-  export default LoginForm;
+export default LoginForm;

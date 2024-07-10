@@ -2,11 +2,10 @@ import RegistrateAqui from "./RegistrateAqui";
 
 export default function Footer() {
   return (
-    <div className="flex flex-col items-center pt-20 justify-center relative flex-direction-reverse">
-      <RegistrateAqui />
+    <div className="flex flex-col items-center justify-center relative flex-direction-reverse">
+      {/* <RegistrateAqui /> */}
       <footer className="bg-[#ce4b9f] text-white p-4 w-full py-20" id="foot">
         <div className="container mx-auto px-40 flex flex-col items-center justify-between ">
-          <div className="mb-4 h-20"></div>
           <div className="flex flex-col md:flex-row justify-between items-center w-full">
             <div className=" z-0">
               <img src="/LogoM&R.png" className="w-20"></img>

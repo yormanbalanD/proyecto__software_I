@@ -1,25 +1,25 @@
-import React from "react"; 
+import React from "react";
 import { useState } from "react";
 
-import LoginForm from './components/LoginForm'; 
+import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignUpForm';
 
-const LoginSignupContainer = ({defaultForm = 'login'}) => {
+const LoginSignupContainer = ({ defaultForm = 'signup' }) => {
   const [showLogin, setShowLogin] = useState(defaultForm === 'login');
   const [showSignup, setShowSignup] = useState(defaultForm === 'signup');
 
   const handleToggleForm = () => {
     setShowLogin(!showLogin);
     setShowSignup(!showSignup);
-  };  
+  };
 
   return (
     <div className="grid w-full h-screen grid-cols-5">
-      <aside className="relative h-full bg-morado p-10 bg-[url('https://placehold.co/400x700.png')] bg-no-repeat bg-cover col-span-2">       
+      <aside className="relative h-full bg-morado p-10 bg-[url('https://placehold.co/400x700.png')] bg-no-repeat bg-cover col-span-2">
         <HeaderLinks ></HeaderLinks>
-        <AuthButtons showLogin={showLogin} toggleForm={handleToggleForm}></AuthButtons>    
+        <AuthButtons showLogin={showLogin} toggleForm={handleToggleForm}></AuthButtons>
       </aside>
-      <div className="p-10 w-full col-span-3">
+      <div className="p-10 w-full col-span-3 flex items-center">
         {showLogin && <LoginForm />}
         {showSignup && <SignupForm />}
       </div>
@@ -39,23 +39,13 @@ const AuthButtons = ({ showLogin, toggleForm }) => {
   };
 
   return (
-    <div className="flex flex-col absolute right-0 *:px-5 *:py-3 *:rounded-l-3xl">
+    <div className="flex flex-col absolute right-0 *:px-8 *:py-3 *:rounded-l-xl">
       <label
         htmlFor="login-radio"
-        className={`flex items-center gap-2 ${
-          !showLogin ? "bg-transparent" : "bg-white text-black"
-        }`}
-        onClick={() => handleFormChange('signup')}
-      >
+        className={`flex cursor-pointer items-center gap-2 ${!showLogin ? "bg-transparent" : "bg-white text-black"}`} onClick={() => handleFormChange('signup')}>
         <p className={"m-auto"}>Iniciar sesión</p>
       </label>
-      <label
-        htmlFor="signup-radio"
-        className={`flex items-center gap-2 ${
-          showLogin ? "bg-transparent" : "bg-white text-black"
-        }`}
-        onClick={() => handleFormChange('login')}
-      >
+      <label htmlFor="signup-radio" className={`flex cursor-pointer items-center gap-2 ${showLogin ? "bg-transparent" : "bg-white text-black"}`} onClick={() => handleFormChange('login')}>
         <p className="m-auto">Registrarse</p>
       </label>
     </div>
@@ -81,10 +71,10 @@ const HeaderLinks = () => (
             clipRule="evenodd"
           />
         </svg>
-        <p>        
+        <p>
           Inicio
         </p>
-      </a>   
+      </a>
       <a href="#" className="*:hover:text-rosado font-bold text-white">
         <svg
           className="w-6 h-6 text-white dark:text-white"
@@ -103,7 +93,7 @@ const HeaderLinks = () => (
             d="M18.427 14.768 17.2 13.542a1.733 1.733 0 0 0-2.45 0l-.613.613a1.732 1.732 0 0 1-2.45 0l-1.838-1.84a1.735 1.735 0 0 1 0-2.452l.612-.613a1.735 1.735 0 0 0 0-2.452L9.237 5.572a1.6 1.6 0 0 0-2.45 0c-3.223 3.2-1.702 6.896 1.519 10.117 3.22 3.221 6.914 4.745 10.12 1.535a1.601 1.601 0 0 0 0-2.456Z"
           />
         </svg>
-        <p>        
+        <p>
           Contacto
         </p>
       </a>
