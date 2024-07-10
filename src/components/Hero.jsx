@@ -12,8 +12,8 @@ function App() {
   const [tipoBusqueda, setTipoBusqueda] = useState("Venta")
 
   return (
-    <div className="bg-white mt-5 mb-14">
-      <div className="max-w-7xl ml-10 px-4 py-12 flex items-center justify-between">
+    <div className="bg-white mt-5 mb-14 flex">
+      <div className="max-w-7xl mx-auto px-4 py-12 flex items-center justify-between">
         <div className="w-1/2">
           <h1 className="text-4xl text-[#641459] leading-normal font-bold mb-12">Hacemos de tus Sueños Inmobiliarios una Realidad</h1>
           <p className="text-xs text-[#515151] leading-loose mb-10 w-2/3">
@@ -30,7 +30,7 @@ function App() {
             height={670}
             className="bg-[#b5b5b5]"
           />
-          <div className="flex absolute items-end bottom-0">
+          {/* <div className="flex absolute items-end bottom-0">
             {tiposDeBusqueda.map((val) => {
               if (val.label == tipoBusqueda) {
                 return (
@@ -46,10 +46,10 @@ function App() {
                 )
               }
             })}
-          </div>
+          </div> */}
         </div>
       </div>
-      <div className="bg-[#b2559b] mb-10">
+      {/* <div className="bg-[#b2559b] mb-10">
         <div className="max-w-7xl mx-auto px-4 flex flex-col gap-4">
           <div className="bg-white flex mx-auto space-x-2 text-xs px-4 py-3 rounded-md mb-2 shadow-md shadow-[#515151]">
             <select className="text-xs border-0 text-[#641459]">
@@ -105,7 +105,7 @@ function App() {
             </select>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }

@@ -45,8 +45,9 @@ const LoginForm = ({ value, onChange }) => {
 
     if (request.status === 200) {
       const response = await request.json()
-      setCookie('token', response.token)
-      setCookie('user', response.user)
+      console.log(response)
+      setCookie('token', response.data.token)
+      setCookie('user', response.data.user)
 
       alert('Iniciaste Sesión con éxito')
       window.location.href = '/'

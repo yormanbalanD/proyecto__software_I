@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { useRef } from 'react'
 import { MdCircle } from 'react-icons/md'
 import CardVivienda from './catalogo/CardVivienda'
+import URLBACKEND from '../config/env'
 
 const tiposDeCasas = [{
   label: 'Casas'
@@ -14,77 +15,6 @@ const tiposDeCasas = [{
   label: 'Townhouse'
 }]
 
-
-const vivienda = [{
-  nombre: 'Apartamento Roraima',
-  m2: 255,
-  precio: 2050,
-  habitaciones: [{
-    tipo: 'baño',
-    cantidad: 2,
-  }, {
-    tipo: 'dormitorio',
-    cantidad: 4
-  }, {
-    tipo: 'estacionamiento',
-    cantidad: 1
-  }],
-  tipo: 'Apartamento'
-}, {
-  nombre: 'Casa Alta Vista',
-  m2: 255,
-  precio: 2050,
-  habitaciones: [{
-    tipo: 'baño',
-    cantidad: 2,
-  }, {
-    tipo: 'dormitorio',
-    cantidad: 4
-  }, {
-    tipo: 'estacionamiento',
-    cantidad: 1
-  }],
-  tipo: 'Casa'
-}, {
-  nombre: 'Duplex San Ignacio',
-  m2: 255,
-  precio: 2050,
-  habitaciones: [{
-    tipo: 'baño',
-    cantidad: 2,
-  }, {
-    tipo: 'dormitorio',
-    cantidad: 4
-  }, {
-    tipo: 'estacionamiento',
-    cantidad: 1
-  }],
-  tipo: 'Duplex'
-}, {
-  nombre: 'Casa Villa Asia',
-  m2: 20,
-  precio: 234,
-  habitaciones: [{
-    tipo: 'baño',
-    cantidad: 1,
-  }, {
-    tipo: 'dormitorio',
-    cantidad: 3
-  }],
-  tipo: 'Casa'
-}, {
-  nombre: 'Casa Villa Icabaru',
-  m2: 600,
-  precio: 3000,
-  habitaciones: [{
-    tipo: 'baño',
-    cantidad: 2,
-  }, {
-    tipo: 'dormitorio',
-    cantidad: 10
-  }],
-  tipo: 'Casa'
-}]
 
 function BarraDeCirculos({ cantidadViviendas, activo, setActivo }) {
   let cantidadCirculos = Math.trunc(cantidadViviendas / 3) + 1
@@ -105,28 +35,53 @@ function BarraDeCirculos({ cantidadViviendas, activo, setActivo }) {
 export default function destacados() {
   const [tipoActivo, setTipoActivo] = useState("")
   const [circuloActivo, setCirculoActivo] = useState(0)
+  const [viviendas, setViviendas] = useState([])
   const ref = useRef()
 
+  const getViviendas = async () => {
+    const request = await fetch(`${URLBACKEND}/api/estate`, {
+      method: 'GET',
+      headers: {
+        'ngrok-skip-browser-warning': 'true'
+      }
+    })
+
+    if (request.status == 200) {
+      const response = await request.json()
+      response.data.sort((a, b) => b.views - a.views)
+
+      if(response.data.length > 5) {
+        response.data.length = 5
+        setViviendas(response.data)
+      } else {
+        setViviendas(response.data)
+      }
+    } else {
+      console.log(request)
+    }
+  }
+
   useEffect(() => {
-    ref.current.scroll(1008 * circuloActivo, 0)
+    ref.current.scroll(1104 * circuloActivo, 0)
+    getViviendas()
   }, [circuloActivo])
 
   return (
     <div className='py-5 px-5 w-full flex flex-col'>
       <header>
         <h1 className='text-4xl font-bold text-morado text-center'>Inmuebles Destacados</h1>
-        <div className='flex justify-center mt-10 mb-14'>
-          {tiposDeCasas.map((el) => {
+        <div className='flex justify-center mt-8 mb-14'>
+          {/* {tiposDeCasas.map((el) => {
             if (tipoActivo == el.label) {
               return <span className='mx-4 text-sm text-rosado cursor-pointer duration-100'>{el.label}</span>
             } else {
               return <span className='mx-4 text-sm cursor-pointer hover:text-rosado duration-100' onClick={() => setTipoActivo(el.label)}>{el.label}</span>
             }
-          })}
+          })} */}
         </div>
       </header>
-      <div ref={ref} className='flex py-8 relative mx-auto overflow-hidden w-full max-w-[63rem] scroll-smooth'>
-        {vivienda.map((el) => {
+      <div ref={ref} className='flex py-8 relative mx-auto overflow-hidden w-full max-w-[69rem] scroll-smooth'>
+        {viviendas.map((el) => {
           return (
             <CardVivienda prop={el} key={el.nombre} />
           )
@@ -134,7 +89,7 @@ export default function destacados() {
       </div>
 
       <div className='flex justify-center'>
-        <BarraDeCirculos cantidadViviendas={vivienda.length} activo={circuloActivo} setActivo={setCirculoActivo} />
+        <BarraDeCirculos cantidadViviendas={viviendas.length} activo={circuloActivo} setActivo={setCirculoActivo} />
       </div>
     </div>
   )

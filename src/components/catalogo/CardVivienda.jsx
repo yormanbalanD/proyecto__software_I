@@ -12,9 +12,9 @@ export default function CardVivienda({ prop }) {
     }
 
     return (
-        <div className='hover:shadow-[0px_0px_20px_3px_rgba(0,0,0,0.5)] duration-75 max-w-80 min-w-80 mx-6 w-full relative border'>
+        <div className='hover:shadow-[0px_0px_20px_3px_rgba(0,0,0,0.5)] duration-75 h-min max-w-80 min-w-80 mx-6 w-full relative border'>
             <header className="m-0 relative">
-                {prop["image_estates"] && prop["image_estates"].length > 0 && <img className='w-96' src={prop["image_estates"][0].image} alt="" />}
+                {prop["image_estates"] && prop["image_estates"].length > 0 && <img className='w-96 max-h-72' src={prop["image_estates"][0].image} alt="" />}
                 {prop["image_estates"] && prop["image_estates"].length == 0 && <img className='w-full h-full' src='https://placehold.co/600x400' alt="" />}
                 <a href={`https://maps.google.com/?q=${prop.latitude},${prop.altitude}`} target='_blanck' className='absolute z-10 bg-white block overflow-hidden rounded-md bottom-2 left-2 p-2 leading-none border border-[#00000040]'>
                     <HiMapPin className='text-xl text-red-700' />

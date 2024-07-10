@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import Catalogo from './Catalogo'
 import Home from './Home'
-import Perfil from './components/perfil/Container.jsx' 
+import Perfil from './components/perfil/Container.jsx'
 
 import { BrowserRouter, RouterProvider } from 'react-router-dom'
 import { createBrowserRouter } from 'react-router-dom'
@@ -10,6 +10,7 @@ import LoginSingUpContainer from './LoginSingUpContainer.jsx'
 import './index.css'
 import Vivienda from './Vivienda.jsx'
 import Contacto from './Contacto.jsx'
+import { CookiesProvider } from 'react-cookie'
 
 const router = createBrowserRouter([
   {
@@ -49,6 +50,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <CookiesProvider defaultSetOptions={{ path: '/' }}>
+      <RouterProvider router={router} />
+    </CookiesProvider>
   </React.StrictMode>,
 )
