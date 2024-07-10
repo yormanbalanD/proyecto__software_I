@@ -24,5 +24,5 @@ export default function ExperienciaProfesionalidad() {
                 </div>
             </div>
         </div>
-    )
+    ) 
 }
