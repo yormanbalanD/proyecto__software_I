@@ -21,6 +21,7 @@ export default function App() {
     if (request.status == 200) {
       const response = await request.json()
       setViviendas(response.data)
+      console.log(response.data)
     } else {
       console.log(request)
     }
@@ -39,7 +40,6 @@ export default function App() {
     if (request.status == 200) {
       const response = await request.json()
       setViviendas(response.data)
-      console.log(response)
     } else {
       console.log(request)
     }
@@ -60,7 +60,6 @@ export default function App() {
     if (request.status == 200) {
       const response = await request.json()
       setViviendas(response.data)
-      console.log(response)
     } else {
       console.log(request)
     }

@@ -4,9 +4,11 @@ import { PiMapPinFill } from "react-icons/pi"
 import { HiMiniSquares2X2 } from "react-icons/hi2"
 import { FaList } from "react-icons/fa"
 import CardVivienda from "./CardVivienda"
+import { useCookies } from 'react-cookie'
 
 export default function ContainerCatalogo({ viviendas }) {
   const [tipoDeVista, setTipoDeVista] = useState('recuadro') // lista o recuadros
+
 
   return (
     <div className="w-full">
@@ -28,7 +30,7 @@ export default function ContainerCatalogo({ viviendas }) {
             <div key={el.id} className='hover:shadow-[0px_0px_20px_3px_rgba(0,0,0,0.5)] duration-75 w-full flex relative border'>
               <header className="m-0 w-80 flex-shrink-0">
                 {el["image_estates"] && el["image_estates"].length > 0 && <img className='w-full' src={el["image_estates"][0].image} alt="" />}
-                {el["image_estates"] &&el["image_estates"].length == 0 && <img className='w-full h-full' src='https://placehold.co/600x400' alt="" />}
+                {el["image_estates"] && el["image_estates"].length == 0 && <img className='w-full h-full' src='https://placehold.co/600x400' alt="" />}
               </header>
               <div className='px-5 pt-2 pb-4 flex border-l flex-col w-full'>
                 <div className='flex flex-col justify-between items-center h-full'>

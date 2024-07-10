@@ -9,26 +9,38 @@ export default function AsidePerfil({ tipoUsuario, setPagina }) {
   const [open, setOpen] = useState(true)
   const [ventana, setVentana] = useState('Mi Perfil')
 
+  // const listCliente = [{
+  //   name: 'Mi Perfil',
+  //   component: <MiPerfil tipoUsuario={'cliente'} />
+  // }, {
+  //   name: 'Mis Propiedades',
+  //   component: <MisPropiedades tipoUsuario={'cliente'} />
+  // }, {
+  //   name: 'Favoritos',
+  //   component: <Favoritos />
+  // }]
   const listCliente = [{
     name: 'Mi Perfil',
     component: <MiPerfil tipoUsuario={'cliente'} />
-  }, {
-    name: 'Mis Propiedades',
-    component: <MisPropiedades tipoUsuario={'cliente'} />
   }, {
     name: 'Favoritos',
     component: <Favoritos />
   }]
 
+  // const listAsesor = [{
+  //   name: 'Mi Perfil',
+  //   component: <MiPerfil tipoUsuario={'asesor'} />
+  // }, {
+  //   name: 'Mis Propiedades',
+  //   component: <MisPropiedades tipoUsuario={'asesor'} />
+  // }, {
+  //   name: 'Mis Clientes',
+  //   component: <MisClientes />
+  // }]
+
   const listAsesor = [{
     name: 'Mi Perfil',
     component: <MiPerfil tipoUsuario={'asesor'} />
-  }, {
-    name: 'Mis Propiedades',
-    component: <MisPropiedades tipoUsuario={'asesor'} />
-  }, {
-    name: 'Mis Clientes',
-    component: <MisClientes />
   }]
 
   return (

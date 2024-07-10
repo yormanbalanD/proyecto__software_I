@@ -98,9 +98,9 @@ export default function MiPerfil({ tipoUsuario }) {
                 <div className='py-5 px-28'>
                     <div className='w-60 h-60 relative'>
                         <img src="https://placehold.co/480x480" alt="" className='w-full rounded-full shadow-[0px_0px_12px_2px_rgba(0,0,0,0.4)]' />
-                        <div className='absolute bottom-0 right-0 -translate-x-1/2 -translate-y-1/2 bg-azulClaro p-2 text-xl text-white rounded-full cursor-pointer'>
+                        {/* <div className='absolute bottom-0 right-0 -translate-x-1/2 -translate-y-1/2 bg-azulClaro p-2 text-xl text-white rounded-full cursor-pointer'>
                             <FaPen />
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 <div className='h-full py-5 flex flex-col'>
