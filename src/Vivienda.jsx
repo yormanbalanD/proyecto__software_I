@@ -4,6 +4,7 @@ import Nav from './components/Nav'
 import { useCookies } from 'react-cookie'
 
 import Footer from './components/Footer'
+import Loader from './components/Loader'
 
 import CardVivienda from './components/catalogo/CardVivienda';
 
@@ -100,42 +101,59 @@ export default function Vivienda() {
 
   const [imagenActual, setImagenActual] = useState(0)
 
+  const [isLoading, setIsLoading] = useState(false)
+  
+
   const requestGetLike = async (idVivienda) => {
-    const request = await fetch(`${URLBACKEND}/api/estate/user/${user.id}/${idVivienda}`, {
-      method: 'GET',
-      headers: {
-        'ngrok-skip-browser-warning': 'true'
-      }
-    })
-    if (request.status == 200) {
-      const response = await request.json()
-      console.log(response)
-      setLike(response.data.is_liked)
-    } else {
-      console.log(request)
+    setIsLoading(true);
+    try {
+      const request = await fetch(`${URLBACKEND}/api/estate/user/${user.id}/${idVivienda}`, {
+        method: 'GET',
+        headers: {
+          'ngrok-skip-browser-warning': 'true'
+        }
+      })
+      if (request.status == 200) {
+        const response = await request.json()
+        console.log(response)
+        setLike(response.data.is_liked)
+      } else {
+        console.log(request)
+      } 
+    } catch (error) {
+      console.error(`ERROR: ${error}`)
+    } finally {
+      setIsLoading(false)
     }
   }
 
   const requestSetLike = async () => {
-    const request = await fetch(`${URLBACKEND}/api/estate/meGusta`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
-      },
-      body: JSON.stringify({
-        estate_id: vivienda.id,
-        user_id: user.id,
-        liked: !like
+    setIsLoading(true)
+    try {
+      const request = await fetch(`${URLBACKEND}/api/estate/meGusta`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'ngrok-skip-browser-warning': 'true'
+        },
+        body: JSON.stringify({
+          estate_id: vivienda.id,
+          user_id: user.id,
+          liked: !like
+        })
       })
-    })
-
-    if (request.status == 200) {
-      const response = await request.json()
-
-      setLike(like => !like)
-    } else {
-      console.log(request)
+  
+      if (request.status == 200) {
+        const response = await request.json()
+  
+        setLike(like => !like)
+      } else {
+        console.log(request)
+      }
+    } catch (error) {
+      console.error(`ERROR: ${error}`)
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -144,45 +162,59 @@ export default function Vivienda() {
   }
 
   const incrementView = async (idVivienda) => {
-    const request = await fetch(`${URLBACKEND}/api/estate/view/${idVivienda}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+    setIsLoading(true)
+    try {
+      const request = await fetch(`${URLBACKEND}/api/estate/view/${idVivienda}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'ngrok-skip-browser-warning': 'true'
+        }
+      })
+      if (request.status == 200) {
+        const response = await request.json()
+        console.log(response)
+      } else {
+        console.log(request)
       }
-    })
-    if (request.status == 200) {
-      const response = await request.json()
-      console.log(response)
-    } else {
-      console.log(request)
+    } catch (error) {
+      console.log(`ERROR: ${error}`)
+    } finally {
+      setIsLoading(false)
     }
   }
 
   const getVivienda = async () => {
-    const request = await fetch(`${URLBACKEND}/api/estate/byid`, {
-      method: 'POST',
-      headers: {
-        'ngrok-skip-browser-warning': 'true',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        id: params.idVivienda
+    setIsLoading(true)
+    try {
+      const request = await fetch(`${URLBACKEND}/api/estate/byid`, {
+        method: 'POST',
+        headers: {
+          'ngrok-skip-browser-warning': 'true',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          id: params.idVivienda
+        })
       })
-    })
-
-    if (request.status == 200) {
-      const response = await request.json()
-      setVivienda(response.data)
-      console.log(response.data)
-      incrementView(response.data.id)
-
-      if (user) {
-        requestGetLike(response.data.id)
+  
+      if (request.status == 200) {
+        const response = await request.json()
+        setVivienda(response.data)
+        console.log(response.data)
+        incrementView(response.data.id)
+  
+        if (user) {
+          requestGetLike(response.data.id)
+        }
+      } else {
+        alert('No se pudo recuperar la vivienda')
+        console.log(request)
       }
-    } else {
-      alert('No se pudo recuperar la vivienda')
-      console.log(request)
+    } catch (error) {
+      console.error(`ERROR: ${error}`)
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -201,7 +233,9 @@ export default function Vivienda() {
   return (
     <>
       <Nav></Nav>
-      {vivienda &&
+      {isLoading ?
+        (<Loader />)
+        : (vivienda && 
         <div className='flex w-full h-auto'>
           <div className='w-full py-10 ps-14 h-auto'>
             <div className='flex py-5 justify-between'>
@@ -238,19 +272,6 @@ export default function Vivienda() {
                 <IoIosArrowForward onClick={() => {setImagenActual((imagenActual < vivienda["image_estates"].length - 1) ? imagenActual + 1: vivienda["image_estates"].length - 1)}} className='absolute text-white drop-shadow-[1px_1px_2px_#888] text-5xl top-1/2 right-0 -translate-y-1/2 cursor-pointer' /> 
               </div>
             </div>
-
-            {/* <div className='mt-10 flex flex-wrap'>
-              <div className='font-bold me-14'>
-                Superficie Total
-                <span className='flex items-center leading-none'><RxDimensions className='text-xl me-3' /> {vivienda["land_meters"]} m2</span>
-              </div>
-            </div>
-
-            <div className='mt-8'>
-              <h2 className='font-bold text-gray-500 opacity-80 text-3xl'>Descripcion</h2>
-              <p className='mt-1 text-justify text-gray-700 font-semibold'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum aliquid similique illo enim rerum saepe consequatur nemo quam ipsam soluta reprehenderit odio incidunt laboriosam ab, velit molestiae provident, esse tempore!. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem eligendi suscipit, dolorum error possimus fugiat, saepe repellat corporis, modi dolores earum eum aliquid molestias ipsum id mollitia! Nobis, voluptas reiciendis!</p>
-            </div> */}
-
             <div className='mt-1'>
               <h2 className='font-bold text-gray-500 opacity-80 text-3xl mb-2'>Precio: {vivienda.price} Bs</h2>
 
@@ -353,20 +374,8 @@ export default function Vivienda() {
             </div>
           </div>
         </div>
-      }
-
-      {/* <div className='w-full mt-10 mb-5'>
-        <h5 className='text-center text-morado font-bold text-3xl mb-5'>Tambien te puede interesar</h5>
-
-        <div className='flex py-4 px-10 flex-wrap relative mx-auto w-full scroll-smooth'>
-          {vivienda.map((el) => {
-            return (
-              <CardVivienda prop={el} key={el.nombre} />
-            )
-          })}
-        </div>
-      </div> */}
+      )}
       <Footer></Footer>
     </>
-  )
-}
+    )
+  }
