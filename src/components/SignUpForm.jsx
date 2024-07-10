@@ -97,7 +97,7 @@ const SingUpForm = () => {
           <h1 className="text-right text-5xl font-semibold text-morado mb-4">Registrarse</h1> {/* AQUI PODRIA AGREGAR LA VARIBLE DEL COLOR SELECIONADO */}
           <p className="text-right"><span className="font-semibold">Registrate para realizar la reserva de tu inmueble</span> y disfrutar de tu área privada</p>
         </div>
-        <img src="./public/LogoM&R.png" className="w-28 m-2" />
+        <img src="/public/LogoM&R.png" className="w-28 m-2" />
       </div>
       {/* form */}
 

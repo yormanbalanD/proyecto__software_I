@@ -85,7 +85,7 @@ export default function App() {
       if (request.status == 200) {
         const response = await request.json()
         setViviendas(response.data)
-        if(viviendas.length === 0) setIsLoading(false)
+        setIsLoading(false)
       } else {
         console.log(request)
         toast.error("Ocurrio un problema al contactar la api :(")

@@ -64,7 +64,7 @@ const LoginForm = ({ value, onChange }) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="px-8 py-4 flex flex-col justify-center h-full w-full max-w-md mx-auto">
-      <img src="./public/LogoM&R.png" className="w-32 m-2 mb-10 flex self-center" />
+      <img src="/public/LogoM&R.png" className="w-32 m-2 mb-10 flex self-center" />
       <div className={'mb-5'}>
         <Input type='text' icon={<MdEmail className="text-3xl" />} label={'Correo Electronico'} register={register('email')} name={'email'} />
         {errors.email && <ErrorMessage value={errors.email.message} />}
