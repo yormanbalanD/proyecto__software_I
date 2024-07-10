@@ -11,6 +11,8 @@ import './index.css'
 import Vivienda from './Vivienda.jsx'
 import Contacto from './Contacto.jsx'
 import { CookiesProvider } from 'react-cookie'
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify'
 
 const router = createBrowserRouter([
   {
@@ -52,6 +54,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <CookiesProvider defaultSetOptions={{ path: '/' }}>
       <RouterProvider router={router} />
+      <ToastContainer />
     </CookiesProvider>
   </React.StrictMode>,
 )

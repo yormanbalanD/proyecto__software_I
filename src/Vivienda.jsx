@@ -22,6 +22,7 @@ import { PiToiletFill } from "react-icons/pi"
 import { FaRegBuilding } from "react-icons/fa"
 import { BsBricks } from "react-icons/bs"
 import { PiBuildingApartmentFill } from "react-icons/pi"
+import { toast } from 'react-toastify'
 
 
 const vivienda = [{
@@ -184,6 +185,7 @@ export default function Vivienda() {
 
   useEffect(() => {
     getVivienda()
+    toast.success('Vivienda cargada')
   }, [])
 
   return (
