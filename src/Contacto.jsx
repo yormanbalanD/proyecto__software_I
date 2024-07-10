@@ -9,7 +9,7 @@ export default function Contacto() {
   return (
     <div>
       <Nav />
-      <main>
+      <main className='mb-20'>
         <AboutUs />
         <ExperienciaProfesionalidad />
         <UbicacionContainer></UbicacionContainer>

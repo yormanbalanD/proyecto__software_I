@@ -47,7 +47,7 @@ export default function NuestrosServicios() {
   ]
 
   return (
-    <div className="w-auto h-auto relative my-10">
+    <div className="w-auto h-auto relative my-10" id='servicios'>
       <div className='bg-cover bg-center bg-no-repeat' style={{ backgroundImage: "url('/background.jpg')" }}>
         <div className='bg-rosado bg-opacity-70 flex flex-col items-center'>
           <h1 className='text-white font-bold  underline-offset-2 text-[50px] tracking-[2px] mt-14'>Nuestros Servicios</h1>

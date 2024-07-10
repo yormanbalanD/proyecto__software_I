@@ -81,7 +81,7 @@ export default function App() {
       <Nav></Nav>
       <main className="flex flex-col items-center">
         <SearchBar></SearchBar>
-        <div className="flex mt-14">
+        <div className="flex mt-14 w-full">
           <AsideCatalogo />
           <ContainerCatalogo viviendas={example} />
         </div>
