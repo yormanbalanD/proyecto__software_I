@@ -127,7 +127,7 @@ const SingUpForm = () => {
           {errors.email && <ErrorMessage value={errors.email.message} />}
         </div>
 
-        <div>
+        <div className="col-span-2">
           <Input icon={<FaLock className="text-2xl" />} label={'Contraseña'} type={'password'} register={register('password')} name={'password'} />
           {errors.password && <ErrorMessage value={errors.password.message} />}
         </div>
