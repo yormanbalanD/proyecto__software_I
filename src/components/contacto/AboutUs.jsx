@@ -31,7 +31,7 @@ export default function AboutUs() {
               de cada uno de nuestros clientes, priorizando la orientación al
               cliente en todo momento.
             </p>
-          </div>
+          </div> 
   
           <div className="h-full w-full">
             <img
