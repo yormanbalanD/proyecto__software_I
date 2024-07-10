@@ -17,6 +17,7 @@ import { RxDimensions } from "react-icons/rx";
 import { MdBed, MdDriveEta, MdBathtub, MdCircle } from 'react-icons/md'
 import URLBACKEND from './config/env'
 
+import { IoIosCopy } from "react-icons/io"
 import { MdLocalPostOffice } from "react-icons/md";
 import { PiToiletFill } from "react-icons/pi"
 import { FaRegBuilding } from "react-icons/fa"
@@ -96,6 +97,8 @@ export default function Vivienda() {
   const [user, setUser] = useState(cookies.user)
 
   const [like, setLike] = useState(false)
+
+  const [imagenActual, setImagenActual] = useState(0)
 
   const requestGetLike = async (idVivienda) => {
     const request = await fetch(`${URLBACKEND}/api/estate/user/${user.id}/${idVivienda}`, {
@@ -183,9 +186,16 @@ export default function Vivienda() {
     }
   }
 
+  const copiarLink = async () => {
+    const url = window.location.href
+    await navigator.clipboard.writeText(url)
+    toast.success('Link copiado', {
+      icon: <IoIosCopy className='text-xl text-verde' />
+    })
+  }
+
   useEffect(() => {
     getVivienda()
-    toast.success('Vivienda cargada')
   }, [])
 
   return (
@@ -195,11 +205,11 @@ export default function Vivienda() {
         <div className='flex w-full h-auto'>
           <div className='w-full py-10 ps-14 h-auto'>
             <div className='flex py-5 justify-between'>
-              <h3 className='font-bold text-2xl'>{vivienda.name}</h3>
+              <h3 className='font-bold text-2xl uppercase pe-2'>{vivienda.name}</h3>
 
               <div className='flex items-center'>
                 <a href={`https://maps.google.com/?q=${vivienda.latitude},${vivienda.altitude}`} target='_blanck' className='me-8 flex items-center leading-none text-blue-700 font-semibold'><HiMapPin className='text-2xl me-2' /> Ver Mapa</a>
-                <span className='me-20 flex items-center leading-none font-semibold'><IoShareSocialOutline className='text-xl me-2' /> Compartir</span>
+                <button onClick={copiarLink} className='me-20 flex items-center leading-none font-semibold'><IoShareSocialOutline className='text-xl me-2' />Compartir</button>
 
                 {user && !like &&
                   <button onClick={toggleLike} className='border border-rosado text-rosado hover:bg-rosado hover:text-white duration-75 font-semibold py-2 px-3 rounded-sm flex items-center leading-none shadow-[0px_0px_4px_1px_rgba(178,85,155,0.3)]'><FaRegHeart className='text-xl me-1' /> Guardar Favorito</button>}
@@ -212,18 +222,20 @@ export default function Vivienda() {
               </div>
             </div>
             <div className='flex items-center'>
-              <div className='max-w-24 grid gap-2 grid-cols-1 h-min me-20'>
-                {vivienda["image_estates"] && vivienda["image_estates"].length > 1 && vivienda["image_estates"].map((el, i) => {
-                  if (i != 0) {
-                    return <img className='w-full' src={el.image} alt="" />
-                  }
-                })}
-              </div>
+              {vivienda["image_estates"] && vivienda["image_estates"].length > 1 &&
+                <div className='max-w-24 grid gap-2 grid-cols-1 h-min me-20'>
+                  {vivienda["image_estates"].map((el, i) => {
+                    if (i != imagenActual) {
+                      return <img onClick={() => {setImagenActual(i)}} className='w-full cursor-pointer hover:scale-105 hover:shadow-[0px_0px_10px_4px_rgba(0,0,0,0.3)] duration-75' src={el.image} alt="" />
+                    }
+                  })}
+                </div>
+              }
 
               <div className='relative items-center w-full'>
-                {vivienda["image_estates"] && vivienda["image_estates"].length > 0 && <img className='w-full' src={vivienda["image_estates"][0].image} alt="" />}
-                <IoIosArrowBack className='absolute text-white drop-shadow-[1px_1px_2px_#888] text-5xl top-1/2 left-0 -translate-y-1/2 float-start cursor-pointer' />
-                <IoIosArrowForward className='absolute text-white drop-shadow-[1px_1px_2px_#888] text-5xl top-1/2 right-0 -translate-y-1/2 cursor-pointer' />
+                {vivienda["image_estates"] && vivienda["image_estates"].length > 0 && <img className='w-full' src={vivienda["image_estates"][imagenActual].image} alt="" />}
+                <IoIosArrowBack onClick={() => {setImagenActual((imagenActual > 0) ? imagenActual - 1: 0)}} className='absolute text-white drop-shadow-[1px_1px_2px_#888] text-5xl top-1/2 left-0 -translate-y-1/2 float-start cursor-pointer' />
+                <IoIosArrowForward onClick={() => {setImagenActual((imagenActual < vivienda["image_estates"].length - 1) ? imagenActual + 1: vivienda["image_estates"].length - 1)}} className='absolute text-white drop-shadow-[1px_1px_2px_#888] text-5xl top-1/2 right-0 -translate-y-1/2 cursor-pointer' /> 
               </div>
             </div>
 

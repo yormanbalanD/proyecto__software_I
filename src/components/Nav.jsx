@@ -22,11 +22,13 @@ export default function Navbar() {
     <nav className="bg-[#f2f3f2] py-2 w-full flex">
       <div className="px-4 flex justify-between w-full">
         <div className="h-20 flex">
-          <img
-            src="/LogoM&R.png"
-            alt="An image that represents M&R Inversiones y Desarrollo"
-            className="h-full"
-          />
+          <a href="/">
+            <img
+              src="/LogoM&R.png"
+              alt="An image that represents M&R Inversiones y Desarrollo"
+              className="h-full"
+            />
+          </a>
         </div>
 
         <div className="flex items-center w-full justify-end">
@@ -58,11 +60,11 @@ export default function Navbar() {
                         Perfil
                       </li>
                     </a>
-                    <a href="/perfil#favoritos">
+                    {/* <a href="/perfil#favoritos">
                       <li className="hover:bg-gray-100 px-4 py-2 cursor-pointer">
                         Favoritos
                       </li>
-                    </a>
+                    </a> */}
                     <a href="#" onClick={() => {
                       removeCookie('user')
                       removeCookie('token')
