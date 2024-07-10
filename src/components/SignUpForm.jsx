@@ -52,6 +52,8 @@ const SingUpForm = () => {
     resolver: zodResolver(SchemaSingup)
   })
 
+  const [cookies, setCookie] = useCookies(['token']);
+
   const options = [
     { value: 'v', label: 'V' },
     { value: 'rifJ', label: 'RIF-J' },
@@ -59,6 +61,12 @@ const SingUpForm = () => {
   ];
 
   const onSubmit = (data) => console.log(data)
+
+  useEffect(() => {
+    if (cookies.token) {
+      window.location.href = '/'
+    }
+  }, [])
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="px-8 py-4">

@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-import { z } from "zod";
+import { set, z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from '@hookform/resolvers/zod'
 import ErrorMessage from "./formularios/ErrorMessage";
@@ -9,6 +9,11 @@ import ErrorMessage from "./formularios/ErrorMessage";
 import Input from "./formularios/Input";
 import { FaLock } from "react-icons/fa6"
 import { MdEmail } from "react-icons/md"
+import { useCookies } from "react-cookie";
+import URLBACKEND from "../config/env";
+import { redirect } from "react-router-dom";
+import { redirectDocument } from "react-router-dom";
+import { useEffect } from "react";
 
 const SchemaLogin = z.object({
   email: z.string({
@@ -27,8 +32,34 @@ const LoginForm = ({ value, onChange }) => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm({
     resolver: zodResolver(SchemaLogin)
   })
+  const [cookies, setCookie] = useCookies(['token']);
 
-  const onSubmit = (data) => console.log(data)
+  const onSubmit = async (data) => {
+    const request = await fetch(`${URLBACKEND}/api/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+
+    if (request.status === 200) {
+      const response = await request.json()
+      setCookie('token', response.token)
+      setCookie('user', response.user)
+
+      alert('Iniciaste Sesión con éxito')
+      window.location.href = '/'
+    } else {
+      alert('Error, Usuario o contraseña incorrectos')
+    }
+  }
+
+  useEffect(() => {
+    if (cookies.token) {
+      window.location.href = '/'
+    }
+  }, [])
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="px-8 py-4 flex flex-col justify-center h-full w-full max-w-md mx-auto">
@@ -41,12 +72,12 @@ const LoginForm = ({ value, onChange }) => {
         <Input type='password' icon={<FaLock className="text-2xl" />} label={'Contraseña'} register={register('password')} name={'password'} />
         {errors.password && <ErrorMessage value={errors.password.message} />}
       </div>
-      <div className="flex items-center justify-between mb-10 mt-2">
+      {/* <div className="flex items-center justify-between mb-10 mt-2">
         <div className="flex items-center gap-2">
           <input type="checkbox" className="rounded checked:bg-morado focus:ring-morado" />
           <span>Recordar</span>
         </div>
-      </div>
+      </div> */}
       <button type="submit" className="bg-rosado active:shadow-none text-white px-4 py-2 rounded-lg shadow-xl hover:bg-morado">
         Iniciar sesión
       </button>
