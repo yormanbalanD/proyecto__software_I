@@ -31,17 +31,17 @@ export default function AboutUs() {
               de cada uno de nuestros clientes, priorizando la orientación al
               cliente en todo momento.
             </p>
-          </div>
+          </div> 
   
           <div className="h-full w-full">
             <img
-              src="#"
+              src="/src/assets/quienes_somos.jpg"
               alt="An image that represents M&R Inversiones y Desarrollo"
               className="w-full h-full rounded bg-gray-200"
             />
           </div>
         </div>
-      </div>
+      </div> 
     );
   }
   
