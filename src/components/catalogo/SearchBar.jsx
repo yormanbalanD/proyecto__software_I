@@ -2,9 +2,10 @@ import React from 'react'
 import { useState } from 'react'
 import { FaSearch } from "react-icons/fa"
 
-export default function SearchBar({ value, onChange }) {
+export default function SearchBar({ requestByName }) {
   const [focus, setFocus] = useState(false)
-
+  const [value, setValue] = useState('')
+  
   const searchBarFocused = () => {
     setFocus(true)
   }
@@ -19,9 +20,9 @@ export default function SearchBar({ value, onChange }) {
         <label htmlFor="barraDeBusquedaViviendas">
           <FaSearch className={`text-lg duration-75 text-gray-500 ${focus ? "opacity-75" : "opacity-45"}`} />
         </label>
-        <input onFocus={searchBarFocused} onBlur={searchBarBlur} id="barraDeBusquedaViviendas" type="text" className="w-full outline-none border-none ring-0 appearance-none focus:ring-0" placeholder="Buscar Vivienda..." />
+        <input onChange={e => setValue(e.target.value)} value={value} onFocus={searchBarFocused} onBlur={searchBarBlur} id="barraDeBusquedaViviendas" type="text" className="w-full outline-none border-none ring-0 appearance-none focus:ring-0" placeholder="Buscar Vivienda..." />
       </div>
-      <button className="duration-75 flex items-center leading-none bg-verde hover:bg-verdeOscuro px-7 py-3 rounded-md text-sm text-white"><FaSearch className="text-lg me-2" />Buscar</button>
+      <button onClick={() =>requestByName(value)} className="duration-75 flex items-center leading-none bg-verde hover:bg-verdeOscuro px-7 py-3 rounded-md text-sm text-white"><FaSearch className="text-lg me-2" />Buscar</button>
     </div>
   )
 }
