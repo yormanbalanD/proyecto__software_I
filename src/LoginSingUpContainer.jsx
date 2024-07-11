@@ -55,7 +55,7 @@ const AuthButtons = ({ showLogin, toggleForm }) => {
 const HeaderLinks = () => (
   <div className="absolute bottom-10">
     <div className="*:flex *:items-center *:gap-2 flex items-left gap-2 flex-col">
-      <a href="#" className="*:hover:text-rosado font-bold text-white">
+      <a href="/" className="*:hover:text-rosado font-bold text-white">
         <svg
           className="w-6 h-6 text-white dark:text-white"
           aria-hidden="true"
@@ -75,7 +75,7 @@ const HeaderLinks = () => (
           Inicio
         </p>
       </a>
-      <a href="#" className="*:hover:text-rosado font-bold text-white">
+      <a href="/contacto" className="*:hover:text-rosado font-bold text-white">
         <svg
           className="w-6 h-6 text-white dark:text-white"
           aria-hidden="true"

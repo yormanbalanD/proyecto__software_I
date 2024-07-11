@@ -1,5 +1,5 @@
 import React from "react";
-import img2 from "../assets/img_testimonios.jpg";
+
 import { RiStarSFill } from "react-icons/ri";
 
 export default function Testimonios() {
@@ -8,7 +8,7 @@ export default function Testimonios() {
       <div className="relative flex text-gray-700 flex-row align-middle max-w-6xl mt-24 mb-96">
         <div className="w-2/5 m-0 overflow-hidden text-gray-700 bg-white rounded-r-none shrink-0">
           <img
-            src={img2}
+            src="img_testimonios.jpg"
             alt="card-image"
             className="object-cover w-full h-full"
           />

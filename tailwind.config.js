@@ -21,6 +21,7 @@ export default {
       morado: '#641459',
       moradoBotonesHover: '#640549',
       rosado: 'rgb(206, 74, 158)',
+      rosadoDisabled: 'rgb(206, 74, 158, 0.5)',
       rosadoClaroIconos: 'rgb(239, 195, 223)',
       verde: 'rgb(7,127,116)',
       verdeOscuro: 'rgb(5, 91, 83)',
