@@ -35,7 +35,7 @@ export default function AboutUs() {
   
           <div className="h-full w-full">
             <img
-              src="#"
+              src="quienes_somos.jpg"
               alt="An image that represents M&R Inversiones y Desarrollo"
               className="w-full h-full rounded bg-gray-200"
             />

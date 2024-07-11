@@ -3,7 +3,7 @@ import React from "react";
 const Mapa = () => {
     return (
         <div>
-            <img src="https://placehold.co/500x400.png"></img>
+            <img src="ubicacion.jpg"></img>
         </div>
     )
 }

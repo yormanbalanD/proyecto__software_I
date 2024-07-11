@@ -20,7 +20,7 @@ export default function ExperienciaProfesionalidad() {
                 </div>
 
                 <div className="h-2xl mt-10 text-center bg-gray-400">
-                    <img className="object-fill object-center w-full h-[400px]" src="" alt="pega un enlace valido" />
+                    <img className="object-fill object-center w-full h-[400px]" src="experiencia_profesionalidad.jpg" alt="pega un enlace valido" />
                 </div>
             </div>
         </div>
