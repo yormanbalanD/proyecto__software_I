@@ -20,7 +20,7 @@ function App() {
             Bienvenidos a M&R Inversiones y Desarrollo, una organización innovadora dedicada a ofrecer servicios
             inmobiliarios de calidad y asesoramiento a nuestros clientes y empresas afines.
           </p>
-          <button className="bg-verde text-white px-6 py-2 mx-10 text-sm font-semibold hover:bg-[#b2559b] shadow-md shadow-[#515151]">Ver más</button>
+          <a href='/catalogo' className="bg-verde text-white px-6 py-2 mx-10 text-sm font-semibold hover:bg-[#b2559b] shadow-md shadow-[#515151]">Ver más</a>
         </div>
         <div className="w-1/2 -mt-12 -mr-10 -mb-12 relative">
           <img

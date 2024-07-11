@@ -341,7 +341,7 @@ export default function Vivienda() {
               <p className='text-center py-5 text-sm font-semibold'>Contactar Agente Inmobiliario</p>
 
               <div className='rounded-[50%] max-w-24 relative overflow-hidden'>
-                <img src="https://placehold.co/400x400" className='w-full' alt="" />
+                <img src="/public/persona.jpg" className='w-full' alt="" />
               </div>
 
               <p className='text-3xl font-bold'>Jesus Rondon</p>
