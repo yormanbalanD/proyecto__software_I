@@ -98,7 +98,11 @@ export default function CardVivienda({ prop }) {
               <p className='w-auto text-start text-wrap'>{prop.name}</p>
               <span>{prop.price}$</span>
             </div>
-            <span className='ps-2 text-xs'>{prop["land_meters"]} mts2</span>
+
+            <div className='flex flex-col gap-2 mt-2'>
+              <span className='ps-2 text-xs'>Superficie Total: {prop["land_meters"]} mts2</span>
+              <span className='ps-2 text-xs'>Metros Construidos: {prop["construction_meters"]} mts2</span>
+            </div>
           </div>
 
           <div className='flex justify-end w-full'>
