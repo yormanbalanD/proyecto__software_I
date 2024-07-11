@@ -57,7 +57,8 @@ export default function CardVivienda({ prop }) {
   }
 
   useEffect(() => {
-    if(user) requestGetLike()
+    if (!user) return
+    requestGetLike()
   }, [])
 
   return (

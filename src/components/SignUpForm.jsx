@@ -142,10 +142,10 @@ const SingUpForm = () => {
           {errors.confirmPassword && <ErrorMessage value={errors.confirmPassword.message} />}
         </div> */}
 
-        {/* <div className="mb-3 col-span-2 flex items-center">
+        <div className="mb-3 col-span-2 flex items-center">
           <input type="checkbox" id="acepto" name="acepto" className="block w-h-5 rounded-md focus:outline-none focus:ring-morado pr-2 checked:bg-morado" required />
-          <label htmlFor="acepto" className="inline-block ml-2 text-gray-700 text-left">Consineto que M&R Inversiones y Desarrollos, trate mis datos personales con la finalidad de remitirme comunicaciones comerciales por medios ordinarios y/o electrónicos sobre sus productos y/o servicios</label>
-        </div> */}
+          <label htmlFor="acepto" className="inline-block ml-2 text-gray-700 text-left">Consiento que M&R Inversiones y Desarrollos, trate mis datos personales con la finalidad de remitirme comunicaciones comerciales por medios ordinarios y/o electrónicos sobre sus productos y/o servicios</label>
+        </div>
       </div>
       {/* Send form button */}
       <div className="flex justify-center p-2">

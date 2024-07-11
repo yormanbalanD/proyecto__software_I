@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import URLBACKEND from '../../config/env'
 import Input from '../formularios/Input'
 
-export default function AsideCatalogo({ requestFilters }) {
+export default function AsideCatalogo({ requestFilters, isLoading }) {
   const { register, handleSubmit, watch, formState: { errors } } = useForm()
 
   const [filters, setFilters] = useState([])
@@ -76,7 +76,14 @@ export default function AsideCatalogo({ requestFilters }) {
         </div>
 
         <div className='px-3'>
-          <button className='bg-azulClaro hover:bg-azulClaroBotonesHover duration-75 px-4 py-2 text-lg font-semibold text-white rounded-md w-full'>Filtrar</button>
+          {
+            !isLoading &&
+            <button className='bg-azulClaro hover:bg-azulClaroBotonesHover duration-75 px-4 py-2 text-lg font-semibold text-white rounded-md w-full'>Filtrar</button>
+          }
+          {
+            isLoading &&
+            <button disabled className='bg-azulClaroDisabled duration-75 px-4 py-2 text-lg font-semibold text-white rounded-md w-full'>Filtrar</button>
+          }
         </div>
       </form>
     </aside>

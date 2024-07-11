@@ -15,7 +15,7 @@ const LoginSignupContainer = ({ defaultForm = 'signup' }) => {
 
   return (
     <div className="grid w-full h-screen grid-cols-5">
-      <aside className="relative h-full bg-morado p-10 bg-[url('https://placehold.co/400x700.png')] bg-no-repeat bg-cover col-span-2">
+      <aside className="relative h-full bg-morado p-10 bg-[url('/public/edificio.png')] bg-no-repeat bg-cover col-span-2">
         <HeaderLinks ></HeaderLinks>
         <AuthButtons showLogin={showLogin} toggleForm={handleToggleForm}></AuthButtons>
       </aside>

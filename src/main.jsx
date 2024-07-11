@@ -13,6 +13,10 @@ import Contacto from './Contacto.jsx'
 import { CookiesProvider } from 'react-cookie'
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify'
+import Favoritos from './components/perfil/Favoritos.jsx'
+
+import Footer from './components/Footer'
+import Nav from './components/Nav'
 
 const router = createBrowserRouter([
   {
@@ -38,6 +42,14 @@ const router = createBrowserRouter([
   {
     path: '/catalogo',
     element: <Catalogo />
+  },
+  {
+    path: '/favoritos',
+    element: <div>
+      <Nav></Nav>
+      <Favoritos />
+      <Footer></Footer>
+    </div>
   }, {
     path: '/catalogo/:idVivienda',
     element: <Vivienda />,

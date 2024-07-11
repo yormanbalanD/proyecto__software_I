@@ -5,6 +5,8 @@ import { MdCircle } from 'react-icons/md'
 import CardVivienda from './catalogo/CardVivienda'
 import URLBACKEND from '../config/env'
 
+import Loader from './Loader'
+
 const tiposDeCasas = [{
   label: 'Casas'
 }, {
@@ -36,6 +38,7 @@ export default function destacados() {
   const [tipoActivo, setTipoActivo] = useState("")
   const [circuloActivo, setCirculoActivo] = useState(0)
   const [viviendas, setViviendas] = useState([])
+  const [loading, setLoading] = useState(true)
   const ref = useRef()
 
   const getViviendas = async () => {
@@ -50,13 +53,15 @@ export default function destacados() {
       const response = await request.json()
       response.data.sort((a, b) => b.views - a.views)
 
-      if(response.data.length > 5) {
+      if (response.data.length > 5) {
         response.data.length = 5
         setViviendas(response.data)
       } else {
         setViviendas(response.data)
       }
+      setLoading(false)
     } else {
+      toast.error("Ocurrio un problema al contactar la api :(")
       console.log(request)
     }
   }
@@ -81,16 +86,19 @@ export default function destacados() {
         </div>
       </header>
       <div ref={ref} className='flex py-8 relative mx-auto overflow-hidden w-full max-w-[69rem] scroll-smooth'>
-        {viviendas.map((el) => {
+        {loading ? <Loader /> : viviendas.map((el) => {
           return (
             <CardVivienda prop={el} key={el.nombre} />
           )
         })}
       </div>
 
-      <div className='flex justify-center'>
-        <BarraDeCirculos cantidadViviendas={viviendas.length} activo={circuloActivo} setActivo={setCirculoActivo} />
-      </div>
+      {
+        !loading &&
+        <div className='flex justify-center'>
+          <BarraDeCirculos cantidadViviendas={viviendas.length} activo={circuloActivo} setActivo={setCirculoActivo} />
+        </div>
+      }
     </div>
   )
 }

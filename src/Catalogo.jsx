@@ -104,9 +104,9 @@ export default function App() {
     <div>
       <Nav></Nav>
       <main className="flex flex-col items-center">
-        <SearchBar requestByName={getViviendasByName} />
+        <SearchBar isLoading={isLoading} requestByName={getViviendasByName} />
         <div className="flex mt-14 w-full">
-          <AsideCatalogo requestFilters={getViviendasByFilters} />
+          <AsideCatalogo isLoading={isLoading} requestFilters={getViviendasByFilters} />
           {isLoading ? 
             (<Loader />)
             :<ContainerCatalogo viviendas={ viviendas }  hayViviendas={viviendas.length !== 0}/> }
