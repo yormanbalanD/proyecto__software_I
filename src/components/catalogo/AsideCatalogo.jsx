@@ -61,11 +61,11 @@ export default function AsideCatalogo({ requestFilters, isLoading }) {
             })}
           </Select>
 
-          <span className='font-semibold mb-2 block'>Metros Construidos</span>
+          {/* <span className='font-semibold mb-2 block'>Metros Construidos</span>
           <div className='flex flex-col gap-y-3 mb-8'>
             <Input register={register('min_meters')} className='border-2 w-full rounded-md font-semibold border-verde' label='Metros minimos' />
             <Input register={register('max_meters')} className='border-2 w-full rounded-md font-semibold border-verde' label='Metros maximos' />
-          </div>
+          </div> */}
 
           <Select register={register('price')} className='border-2 w-full rounded-md px-4 py-3 mb-5 font-semibold border-verde'>
             <option value="">Ordenar por Precio</option>
