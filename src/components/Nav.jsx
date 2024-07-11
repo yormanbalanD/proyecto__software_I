@@ -55,7 +55,7 @@ export default function Navbar() {
 
                 {open && <div className="bg-white absolute top-10 right-0 w-max h-min z-10 flex flex-col rounded-md shadow-md">
                   <ul>
-                    <a href="/perfil">
+                    <a href="/favoritos">
                       <li className="hover:bg-gray-100 px-4 py-2 cursor-pointer">
                         Perfil
                       </li>
