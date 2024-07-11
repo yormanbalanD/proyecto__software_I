@@ -19,8 +19,8 @@ export default function ExperienciaProfesionalidad() {
                         Ciudad Guayana 5080, Bolivar, Venezuela.</p>
                 </div>
 
-                <div className="mt-10 text-center flex justify-center w-full">
-                    <img className="object-fill object-center w-1/2" src="src\assets\experiencia_profesionalidad.jpg" alt="pega un enlace valido" />
+                <div className="h-2xl mt-10 text-center flex justify-center">
+                    <img className="object-fill object-center w-full max-w-2xl" src="/public/experiencia_profesionalidad.jpg" alt="pega un enlace valido" />
                 </div>
             </div>
         </div>

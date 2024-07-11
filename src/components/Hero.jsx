@@ -24,7 +24,7 @@ function App() {
         </div>
         <div className="w-1/2 -mt-12 -mr-10 -mb-12 relative">
           <img
-            src="https://placehold.co/1080x670"
+            src="inicio.jpg"
             alt="Placeholder image"
             width={1080}
             height={670}
