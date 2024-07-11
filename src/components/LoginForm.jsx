@@ -33,8 +33,11 @@ const LoginForm = ({ value, onChange }) => {
     resolver: zodResolver(SchemaLogin)
   })
   const [cookies, setCookie] = useCookies(['token']);
+  const [enviandoPeticion, setEnviandoPeticion] = useState(false)
 
   const onSubmit = async (data) => {
+    setEnviandoPeticion(true)
+
     const request = await fetch(`${URLBACKEND}/api/login`, {
       method: 'POST',
       headers: {
@@ -51,7 +54,9 @@ const LoginForm = ({ value, onChange }) => {
 
       alert('Iniciaste Sesión con éxito')
       window.location.href = '/'
+      setEnviandoPeticion(false)
     } else {
+      setEnviandoPeticion(false)
       alert('Error, Usuario o contraseña incorrectos')
     }
   }
@@ -79,9 +84,15 @@ const LoginForm = ({ value, onChange }) => {
           <span>Recordar</span>
         </div>
       </div> */}
-      <button type="submit" className="bg-rosado active:shadow-none text-white px-4 py-2 rounded-lg shadow-xl hover:bg-morado">
-        Iniciar sesión
-      </button>
+        {
+          !enviandoPeticion &&
+          <button type="submit" className="w-full bg-rosado active:shadow-none hover:bg-morado text-white py-2 px-10 rounded-md">Iniciar Sesion</button>
+        }
+
+        {
+          enviandoPeticion &&
+          <button disabled className="w-full bg-rosadoDisabled active:shadow-none text-white py-2 px-10 rounded-md cursor-progress">Iniciar Sesion</button>
+        }
     </form>
   );
 };

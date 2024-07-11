@@ -2,7 +2,7 @@ import React from "react";
 
 import Input from '../components/formularios/Input';
 import ErrorMessage from '../components/formularios/ErrorMessage';
-import { z } from "zod";
+import { set, z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from '@hookform/resolvers/zod'
 
@@ -49,6 +49,7 @@ const SingUpForm = () => {
     resolver: zodResolver(SchemaSingup)
   })
 
+  const [enviandoPeticion, setEnviandoPeticion] = useState(false)
   const [cookies, setCookie] = useCookies(['token']);
 
   const options = [
@@ -58,6 +59,7 @@ const SingUpForm = () => {
   ];
 
   const requestCreateAccount = async (data) => {
+    console.log(data)
     const request = await fetch(`${URLBACKEND}/api/register`, {
       method: 'POST',
       body: JSON.stringify(data),
@@ -73,14 +75,17 @@ const SingUpForm = () => {
       setCookie('user', response.data.user)
       alert('Se creo tu cuenta con éxito')
       window.location.href = '/'
+      setEnviandoPeticion(false)
     } else {
       alert('Error, No se pudo crear la cuenta')
       console.log(request)
+      setEnviandoPeticion(false)
     }
   }
 
   const onSubmit = (data) => {
     requestCreateAccount(data)
+    setEnviandoPeticion(true)
   }
 
   useEffect(() => {
@@ -104,17 +109,17 @@ const SingUpForm = () => {
       <div className="grid grid-cols-2 gap-5">
         <div>
           <Input icon={<FaUser className="text-2xl" />} label={'Nombre'} type={'text'} register={register('name')} name={'nombres'} />
-          {errors.nombres && <ErrorMessage value={errors.nombres.message} />}
+          {errors.name && <ErrorMessage value={errors.name.message} />}
         </div>
 
         <div>
           <Input icon={<FaPencilAlt className="text-2xl" />} label={'Apellidos'} type={'text'} register={register('last_name')} name={'apellidos'} />
-          {errors.apellidos && <ErrorMessage value={errors.apellidos.message} />}
+          {errors.last_name && <ErrorMessage value={errors.last_name.message} />}
         </div>
 
         <div>
           <Input icon={<HiIdentification className="text-3xl" />} label='Numero de Documento' type='text' register={register('document')} name={'numeroDeDocumento'} />
-          {errors.numeroDeDocumento && <ErrorMessage value={errors.numeroDeDocumento.message} />}
+          {errors.document && <ErrorMessage value={errors.document.message} />}
         </div>
 
         {/* <div>
@@ -137,14 +142,22 @@ const SingUpForm = () => {
           {errors.confirmPassword && <ErrorMessage value={errors.confirmPassword.message} />}
         </div> */}
 
-        <div className="mb-3 col-span-2 flex items-center">
+        {/* <div className="mb-3 col-span-2 flex items-center">
           <input type="checkbox" id="acepto" name="acepto" className="block w-h-5 rounded-md focus:outline-none focus:ring-morado pr-2 checked:bg-morado" required />
           <label htmlFor="acepto" className="inline-block ml-2 text-gray-700 text-left">Consineto que M&R Inversiones y Desarrollos, trate mis datos personales con la finalidad de remitirme comunicaciones comerciales por medios ordinarios y/o electrónicos sobre sus productos y/o servicios</label>
-        </div>
+        </div> */}
       </div>
       {/* Send form button */}
       <div className="flex justify-center p-2">
-        <button type="submit" className="w-fit bg-rosado active:shadow-none hover:bg-morado text-white py-2 px-10 rounded-md">Registrarse</button>
+        {
+          !enviandoPeticion &&
+          <button type="submit" className="w-fit bg-rosado active:shadow-none hover:bg-morado text-white py-2 px-10 rounded-md">Registrarse</button>
+        }
+
+        {
+          enviandoPeticion &&
+          <button disabled className="w-fit bg-rosadoDisabled active:shadow-none text-white py-2 px-10 rounded-md cursor-progress">Registrarse</button>
+        }
       </div>
     </form>
   )
