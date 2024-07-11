@@ -57,7 +57,7 @@ export default function Navbar() {
                   <ul>
                     <a href="/favoritos">
                       <li className="hover:bg-gray-100 px-4 py-2 cursor-pointer">
-                        Perfil
+                        Favoritos
                       </li>
                     </a>
                     {/* <a href="/perfil#favoritos">
