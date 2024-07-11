@@ -57,7 +57,19 @@ export default function AsideCatalogo({ requestFilters, isLoading }) {
           <Select register={register('type')} className='border-2 w-full rounded-md px-4 py-3 mb-5 font-semibold border-verde'>
             <option value="">Tipo</option>
             {filters.length > 0 && filters.find(el => el.name == 'type').data.map(el => {
-              return <option key={el + "-type"} value={el}>{el}</option>
+              if (el == 'apartment') {
+                return <option key={el + "-type"} value={el}>Apartamento</option>
+              } else if (el == 'house') {
+                return <option key={el + "-type"} value={el}>Casa</option>
+              } else if (el == 'office') {
+                return <option key={el + "-type"} value={el}>Oficina</option>
+              } else if (el == 'town_house') {
+                return <option key={el + "-type"} value={el}>Town House</option>
+              } else if (el == 'f_trade') {
+                return <option key={el + "-type"} value={el}>Local de comercio</option>
+              } else {
+                return <option key={el + "-type"} value={el}>{el}</option>
+              }
             })}
           </Select>
 
